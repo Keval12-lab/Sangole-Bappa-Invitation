@@ -1,0 +1,37 @@
+/**
+ * LOCKED EVENT CONSTANTS
+ * Source of truth for event details and content.
+ */
+
+export const EVENT_DETAILS = {
+  // Traditional Headings
+  invocation: '॥ श्री गणेशाय नमः ॥',
+  titleMarathi: 'आगमन सोहळा',
+  subtitleMarathi: 'तो येतोय... एका नविन स्वरूपात',
+  tagline: "LET'S WELCOME BAPPA WITH DEVOTION, DYNAMIC DRUMS AND ENDLESS ENERGY!",
+
+  // Event specifics
+  date: '14th September 2026',
+  day: 'Monday',
+  time: '10:00 AM onwards',
+
+  // Venue & Location
+  venueLine1: '82, Hari Om Nagar - 2,',
+  venueLine2: 'New Kosad Road, Amroli,',
+  venueCity: 'Surat',
+  fullAddress: '82, Hari Om Nagar - 2, New Kosad Road, Amroli, Surat',
+  coordinates: `21°14'33.3"N 72°51'23.1"E`,
+  googleMapsUrl: 'https://maps.app.goo.gl/sdX7fcnRjL5s2seHA',
+
+  // Main Attraction
+  attractionTitle: 'DJ ढोल ताशा',
+  attractionSubtitle: 'अथांग नाद, असीम ऊर्जा',
+
+  // Asset paths (safe public paths)
+  assets: {
+    ganpatiHero: '/assets/ganpati/bapp.png',
+    dholLogo: '/assets/dhol/dhol-tasha-logo.png',
+  },
+} as const;
+
+export type EventDetailsType = typeof EVENT_DETAILS;

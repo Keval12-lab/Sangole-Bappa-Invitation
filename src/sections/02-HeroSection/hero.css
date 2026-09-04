@@ -1,0 +1,612 @@
+/* ==========================================================================
+   SECTION 02: HERO SECTION — HIGH-END INDIAN DEVOTIONAL EDITORIAL
+   ========================================================================== */
+
+.section-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 4.5vh, 3.5rem) clamp(1rem, 3.5vw, 3rem);
+  text-align: center;
+  overflow: hidden;
+  background-color: #0b0103;
+  color: #fff8e7;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   01. DEEP ATMOSPHERIC MULTI-LAYER BACKGROUND
+   -------------------------------------------------------------------------- */
+/* Layer 1: Deep atmospheric field with warm parchment glow in the focal center */
+.hero-atmosphere-field {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 65% 55% at 50% 40%, rgba(245, 208, 120, 0.22) 0%, rgba(184, 115, 20, 0.12) 42%, transparent 75%),
+    radial-gradient(ellipse 90% 80% at 50% 48%, #26050b 0%, #170205 55%, #090103 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Layer 2: Distant Temple Architectural Silhouette Atmosphere */
+.hero-distant-temple-silhouette {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: 
+    radial-gradient(ellipse at 50% 25%, rgba(212, 175, 55, 0.14) 0%, transparent 68%),
+    radial-gradient(circle at 18% 42%, rgba(139, 0, 0, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 82% 42%, rgba(139, 0, 0, 0.25) 0%, transparent 50%);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Layer 3: Master Vignette & Deep Maroon Edge Framing */
+.hero-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  box-shadow: 
+    inset 0 0 clamp(60px, 10vw, 140px) rgba(8, 1, 2, 0.96),
+    inset 0 0 clamp(30px, 5vw, 70px) rgba(0, 0, 0, 0.92);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* --------------------------------------------------------------------------
+   02. SACRED SANCTUM BLOOM & CELESTIAL MANDALA HALO
+   -------------------------------------------------------------------------- */
+/* Soft Warm Golden Radial Bloom Behind Ganpati */
+.hero-sanctum-bloom {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(640px, 95vw);
+  height: min(640px, 95vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 235, 170, 0.35) 0%,
+    rgba(229, 189, 71, 0.22) 35%,
+    rgba(217, 4, 41, 0.08) 60%,
+    transparent 78%
+  );
+  filter: blur(42px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 4;
+  animation: heroSanctumPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes heroSanctumPulse {
+  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+}
+
+/* Sacred Celestial Geometric Mandala Halo */
+.hero-mandala-halo {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(520px, 88vw);
+  height: min(520px, 88vw);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.65;
+}
+
+.mandala-halo-svg {
+  width: 100%;
+  height: 100%;
+  animation: heroMandalaRotate 90s linear infinite;
+}
+
+@keyframes heroMandalaRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Corner Antique Filigrees */
+.hero-corner-filigree {
+  position: absolute;
+  width: clamp(38px, 6vw, 55px);
+  height: clamp(38px, 6vw, 55px);
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.65;
+}
+
+.hero-corner-filigree.top-left {
+  top: clamp(14px, 2.5vw, 24px);
+  left: clamp(14px, 2.5vw, 24px);
+}
+
+.hero-corner-filigree.top-right {
+  top: clamp(14px, 2.5vw, 24px);
+  right: clamp(14px, 2.5vw, 24px);
+  transform: scaleX(-1);
+}
+
+/* --------------------------------------------------------------------------
+   03. TOP SACRED DEVOTIONAL INVOCATION
+   -------------------------------------------------------------------------- */
+.hero-sacred-invocation {
+  position: relative;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: clamp(0.75rem, 2vh, 1.5rem);
+}
+
+.invocation-text {
+  font-family: var(--font-display-devanagari, 'Rozha One', serif);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #f7e096;
+  text-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(229, 189, 71, 0.5);
+}
+
+.invocation-flourish {
+  color: #c9a227;
+  font-size: 1.15em;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   04. ART-DIRECTED EDITORIAL MASTER GRID
+   -------------------------------------------------------------------------- */
+.hero-editorial-grid {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.5vh, 1.75rem);
+}
+
+/* --------------------------------------------------------------------------
+   05. GANPATI IDOL INTEGRATION (ORGANIC EDGE BLENDING, NO HARD RECTANGLE)
+   -------------------------------------------------------------------------- */
+.hero-idol-integration-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: clamp(290px, 75vw, 460px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Warm Parchment Light Field directly behind the artwork */
+.hero-idol-glow-backplate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 88%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(255, 230, 160, 0.45) 0%,
+    rgba(220, 175, 70, 0.24) 45%,
+    rgba(140, 20, 30, 0.12) 70%,
+    transparent 88%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* The Deity Artwork with Organic Radial Edge Feathering Mask */
+.hero-idol-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  max-height: clamp(320px, 48vh, 500px);
+  object-fit: contain;
+  
+  /* Soft organic edge blend so the idol artwork melts into the background */
+  mask-image: radial-gradient(
+    ellipse 82% 88% at 50% 48%,
+    black 62%,
+    rgba(0, 0, 0, 0.9) 78%,
+    rgba(0, 0, 0, 0.35) 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 82% 88% at 50% 48%,
+    black 62%,
+    rgba(0, 0, 0, 0.9) 78%,
+    rgba(0, 0, 0, 0.35) 90%,
+    transparent 100%
+  );
+
+  filter: 
+    drop-shadow(0 14px 32px rgba(0, 0, 0, 0.95))
+    drop-shadow(0 0 24px rgba(229, 189, 71, 0.22));
+  
+  will-change: transform;
+  animation: heroIdolFloating 7s ease-in-out infinite alternate;
+}
+
+@keyframes heroIdolFloating {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-6px) scale(1.006); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* Grounding Base Shadow */
+.hero-idol-base-shadow {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72%;
+  height: 35px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(5, 0, 1, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 75%);
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   06. MASTER EDITORIAL TYPOGRAPHY STACK
+   -------------------------------------------------------------------------- */
+.hero-typography-stack {
+  position: relative;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 580px;
+}
+
+/* Master Title Container with Hibiscus Crest: "आगमन सोहळा" */
+.hero-master-title-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(0.5rem, 1.2vh, 0.85rem);
+  padding-right: clamp(28px, 6vw, 44px);
+}
+
+.hero-master-title {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.title-word {
+  font-family: var(--font-display-devanagari, 'Rozha One', 'Yatra One', serif);
+  font-size: clamp(3.2rem, 11vw, 5.2rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  display: inline-block;
+
+  /* Rich Multi-stop Embossed Antique Gold to Ivory Gradient */
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fff7d6 15%,
+    #f5d77f 35%,
+    #e5bd47 55%,
+    #a8791c 78%,
+    #694305 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Sculptural Dimensional Shadow & Sacred Gold Backlight */
+  filter: 
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.95))
+    drop-shadow(0 0 25px rgba(212, 175, 55, 0.45));
+}
+
+/* Nestled Ceremonial Red Hibiscus (Jaswand) */
+.hero-hibiscus-crest {
+  position: absolute;
+  right: -16px;
+  bottom: 0px;
+  width: clamp(42px, 9vw, 62px);
+  height: clamp(42px, 9vw, 62px);
+  filter: 
+    drop-shadow(0 5px 12px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 0 16px rgba(217, 4, 41, 0.5));
+  animation: heroHibiscusFloat 4.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes heroHibiscusFloat {
+  0% { transform: rotate(0deg) scale(0.96); }
+  100% { transform: rotate(6deg) scale(1.05); }
+}
+
+/* Subtitle: "तो येतोय... एका नविन स्वरूपात" */
+.hero-devotional-subtitle {
+  font-family: var(--font-display-devanagari, 'Rozha One', serif);
+  font-size: clamp(1.05rem, 3.2vw, 1.4rem);
+  font-weight: 500;
+  color: #f7d57f;
+  letter-spacing: 0.08em;
+  margin-bottom: clamp(0.6rem, 1.5vh, 1.1rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 16px rgba(212, 175, 55, 0.45);
+}
+
+.subtitle-flourish {
+  color: #e5bd47;
+  font-size: 1.1em;
+  opacity: 0.85;
+}
+
+/* Supporting Devotional Copy & Gold Linework Divider */
+.hero-supporting-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 440px;
+}
+
+.hero-gold-ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.ornament-line {
+  flex: 1;
+  max-width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a227, transparent);
+}
+
+.ornament-symbol {
+  color: #e5bd47;
+  font-size: 0.85rem;
+  filter: drop-shadow(0 0 8px rgba(229, 189, 71, 0.8));
+}
+
+.hero-invitation-tagline {
+  font-family: var(--font-display-latin, 'Cinzel', serif);
+  font-size: clamp(0.78rem, 2.2vw, 0.92rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.65;
+  color: #f7eed8;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   07. AMBIENT MULTI-PLANE FLOATING PETALS
+   -------------------------------------------------------------------------- */
+.hero-ambient-petals-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 15;
+}
+
+.hero-depth-petal {
+  position: absolute;
+  border-radius: 50% 0 50% 50%;
+  will-change: transform, opacity;
+  animation: heroPetalFloat infinite alternate ease-in-out;
+}
+
+.hero-depth-petal.petal-front {
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+  z-index: 16;
+}
+
+.hero-depth-petal.petal-back {
+  filter: blur(1.5px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  opacity: 0.55 !important;
+  z-index: 8;
+}
+
+@keyframes heroPetalFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-22px) rotate(16deg) scale(1.05);
+  }
+  100% {
+    transform: translateY(-45px) rotate(-12deg) scale(0.95);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   08. RESPONSIVE ART-DIRECTED BREAKPOINTS
+   -------------------------------------------------------------------------- */
+
+/* TABLET PORTRAIT (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-hero {
+    padding: 3rem 2rem 3.5rem;
+  }
+
+  .hero-editorial-grid {
+    gap: 1.5rem;
+  }
+
+  .hero-idol-integration-wrapper {
+    max-width: 420px;
+  }
+
+  .hero-idol-image {
+    max-height: 460px;
+  }
+
+  .title-word {
+    font-size: clamp(3.8rem, 8vw, 4.8rem);
+  }
+}
+
+/* DESKTOP & TABLET LANDSCAPE (Min-width 1024px) */
+@media (min-width: 1024px) {
+  .section-hero {
+    padding: clamp(2rem, 3.5vh, 3.5rem) clamp(2rem, 4vw, 5rem);
+    height: 100vh;
+    min-height: 720px;
+    justify-content: center;
+  }
+
+  .hero-sacred-invocation {
+    margin-bottom: 1.25rem;
+  }
+
+  /* Shift Sanctum Bloom slightly toward the left artwork focal area */
+  .hero-sanctum-bloom {
+    top: 50%;
+    left: 38%;
+    width: 680px;
+    height: 680px;
+  }
+
+  .hero-mandala-halo {
+    top: 50%;
+    left: 38%;
+    width: 560px;
+    height: 560px;
+  }
+
+  /* Asymmetrical 2-Column Editorial Grid */
+  .hero-editorial-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    column-gap: clamp(2rem, 4vw, 4.5rem);
+    text-align: left;
+    height: auto;
+    max-height: 780px;
+  }
+
+  .hero-idol-integration-wrapper {
+    max-width: 520px;
+    margin: 0;
+  }
+
+  .hero-idol-image {
+    max-height: clamp(460px, 64vh, 580px);
+  }
+
+  .hero-typography-stack {
+    align-items: flex-start;
+    max-width: 560px;
+  }
+
+  .hero-master-title-wrapper {
+    justify-content: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .title-word {
+    font-size: clamp(4.2rem, 5.5vw, 5.8rem);
+  }
+
+  .hero-hibiscus-crest {
+    right: -24px;
+    bottom: 6px;
+    width: 65px;
+    height: 65px;
+  }
+
+  .hero-devotional-subtitle {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-supporting-group {
+    align-items: flex-start;
+    max-width: 480px;
+  }
+
+  .hero-gold-ornament-divider {
+    justify-content: flex-start;
+  }
+
+  .ornament-line {
+    max-width: 100px;
+  }
+
+  .hero-invitation-tagline {
+    text-align: left;
+  }
+}
+
+/* WIDE SCREENS (Min-width 1440px) */
+@media (min-width: 1440px) {
+  .hero-editorial-grid {
+    max-width: 1320px;
+    column-gap: 5.5rem;
+  }
+
+  .hero-idol-integration-wrapper {
+    max-width: 580px;
+  }
+
+  .hero-idol-image {
+    max-height: 620px;
+  }
+
+  .title-word {
+    font-size: 6.2rem;
+  }
+}
+
+/* MOBILE ULTRA-COMPACT (< 380px) */
+@media (max-width: 380px) {
+  .section-hero {
+    padding: 1.75rem 0.85rem 2.25rem;
+  }
+
+  .hero-idol-integration-wrapper {
+    max-width: 260px;
+  }
+
+  .hero-idol-image {
+    max-height: 290px;
+  }
+
+  .title-word {
+    font-size: 2.7rem;
+  }
+
+  .hero-hibiscus-crest {
+    width: 36px;
+    height: 36px;
+    right: -12px;
+  }
+}

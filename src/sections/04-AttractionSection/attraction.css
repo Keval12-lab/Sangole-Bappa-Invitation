@@ -1,0 +1,37 @@
+.section-attraction {
+  width: 100%;
+  padding: 1.5rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.attraction-logo-container {
+  width: 100%;
+  max-width: 220px;
+  margin: 1.5rem auto 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.attraction-logo-img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4));
+}
+
+.attraction-title {
+  font-family: var(--font-display-devanagari);
+  font-size: 1.8rem;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.attraction-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  max-width: 320px;
+  letter-spacing: 0.05em;
+}

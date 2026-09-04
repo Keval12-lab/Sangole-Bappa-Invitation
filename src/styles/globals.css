@@ -1,0 +1,152 @@
+@import './variables.css';
+
+/* ==========================================================================
+   MODERN CSS RESET & BASE STYLES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--bg-deep);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-deep);
+  overflow-x: hidden;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   MOBILE-FIRST APP SHELL CONTAINER
+   ========================================================================== */
+.app-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 50% 0%, var(--maroon-rich) 0%, var(--bg-deep) 70%);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+  transition: max-width 0.3s ease;
+}
+
+@media (min-width: 840px) {
+  .app-container {
+    max-width: 880px;
+    border-left: 1px solid var(--gold-border);
+    border-right: 1px solid var(--gold-border);
+  }
+}
+
+/* ==========================================================================
+   TYPOGRAPHY UTILITIES
+   ========================================================================== */
+.font-devanagari {
+  font-family: var(--font-display-devanagari);
+}
+
+.font-latin-display {
+  font-family: var(--font-display-latin);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Sacred Section Heading */
+.sacred-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-family: var(--font-display-latin);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  margin: 1.5rem 0 1rem;
+}
+
+.sacred-divider::before,
+.sacred-divider::after {
+  content: '||';
+  color: var(--gold-dark);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   INTERACTIVE BUTTONS & CONTROLS
+   ========================================================================== */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+  -webkit-touch-callout: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   IMAGE & MEDIA DEFAULTS
+   ========================================================================== */
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,32 @@
+.section-closing {
+  width: 100%;
+  padding: 3rem 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 3, 6, 0.95) 100%);
+}
+
+.closing-title {
+  font-family: var(--font-display-devanagari);
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.closing-subtitle {
+  font-family: var(--font-display-devanagari);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin-bottom: 2rem;
+}
+
+.closing-salutation {
+  font-family: var(--font-display-latin);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
