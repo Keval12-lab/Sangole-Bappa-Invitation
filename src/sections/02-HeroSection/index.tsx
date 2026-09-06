@@ -48,11 +48,11 @@ export const HeroSection: React.FC = () => {
         0.15
       );
 
-      // 0.30: Sacred Shloka Ring fades in behind Ganpati
+      // 0.30: Sacred Shloka Ring softly fades in behind Ganpati
       tl.fromTo(
         shlokaRingRef.current,
         { opacity: 0, scale: 0.88, rotation: -8 },
-        { opacity: 0.38, scale: 1, rotation: 0, duration: 1.2, ease: 'power2.out' },
+        { opacity: 0.72, scale: 1, rotation: 0, duration: 1.2, ease: 'power2.out' },
         0.30
       );
 
@@ -247,38 +247,11 @@ export const HeroSection: React.FC = () => {
 
         {/* TYPOGRAPHY / HEADLINE STACK */}
         <div className="hero-typography-stack">
-          {/* Master Calligraphic Title: "आगमन सोहळा" with Hibiscus Crest */}
+          {/* Master Calligraphic Title: "आगमन सोहळा" */}
           <div ref={titleContainerRef} className="hero-master-title-wrapper">
             <h1 className="hero-master-title font-devanagari">
               <span className="title-word">{EVENT_DETAILS.titleMarathi}</span>
             </h1>
-
-            {/* Nestled Red Hibiscus (Jaswand) Accent */}
-            <div className="hero-hibiscus-crest" aria-hidden="true">
-              <svg viewBox="0 0 60 60" fill="none" width="100%" height="100%">
-                <defs>
-                  <radialGradient id="heroJaswandPetal" cx="35%" cy="35%" r="65%">
-                    <stop offset="0%" stopColor="#FF3355" />
-                    <stop offset="50%" stopColor="#D90429" />
-                    <stop offset="85%" stopColor="#7A0512" />
-                    <stop offset="100%" stopColor="#380106" />
-                  </radialGradient>
-                  <linearGradient id="heroJaswandStamen" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FFF280" />
-                    <stop offset="100%" stopColor="#FFB300" />
-                  </linearGradient>
-                </defs>
-                <path d="M30 30 C 22 15, 24 4, 34 8 C 42 12, 38 24, 30 30 Z" fill="url(#heroJaswandPetal)" />
-                <path d="M30 30 C 44 20, 56 22, 54 32 C 50 40, 38 36, 30 30 Z" fill="url(#heroJaswandPetal)" />
-                <path d="M30 30 C 42 42, 46 54, 36 56 C 28 56, 32 42, 30 30 Z" fill="url(#heroJaswandPetal)" />
-                <path d="M30 30 C 18 42, 6 48, 8 36 C 10 28, 22 32, 30 30 Z" fill="url(#heroJaswandPetal)" />
-                <path d="M30 30 C 14 26, 8 14, 18 10 C 26 8, 26 22, 30 30 Z" fill="url(#heroJaswandPetal)" />
-                <path d="M30 30 Q 40 16 50 8" stroke="url(#heroJaswandStamen)" strokeWidth="2.5" strokeLinecap="round" />
-                <circle cx="50" cy="8" r="2.8" fill="#FFEB3B" />
-                <circle cx="46" cy="12" r="2" fill="#FFEB3B" />
-                <circle cx="42" cy="16" r="2" fill="#FFEB3B" />
-              </svg>
-            </div>
           </div>
 
           {/* Subtitle: "तो येतोय... एका नविन स्वरूपात" */}

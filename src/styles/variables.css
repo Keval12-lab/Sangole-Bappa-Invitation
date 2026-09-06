@@ -1,58 +1,134 @@
 :root {
   /* ==========================================================================
-     COLOR PALETTE - ROYAL INDIAN DEVOTIONAL THEME
+     1. COLOR SYSTEM - ROYAL INDIAN TEMPLE & GANPATI FESTIVAL
+     Palette: Deep Wine, Rich Maroon, Deep Shadow, Antique Gold, Warm Ivory, Saffron, Muted Green
      ========================================================================== */
 
-  /* Antique Gold & Brass */
-  --gold-primary: #d4af37;
-  --gold-light: #f6e7b0;
-  --gold-dark: #8c6214;
-  --gold-glow: rgba(212, 175, 55, 0.35);
-  --gold-border: rgba(212, 175, 55, 0.4);
+  /* Core Palette Tokens */
+  --color-primary: #33070C;        /* Deep Wine */
+  --color-secondary: #5A0C14;      /* Rich Maroon */
+  --color-deep-shadow: #160306;    /* Deep Shadow Base */
+  --color-antique-gold: #C9A227;   /* Antique Gold (Ceremonial Accent) */
+  --color-warm-ivory: #F3E7C2;     /* Warm Ivory (High Readability Text) */
+  --color-saffron: #D8861B;        /* Saffron / Kesari (Festive Accent) */
+  --color-muted-green: #304B2E;    /* Muted Sacred Green */
 
-  /* Royal Maroon & Crimson */
-  --maroon-deep: #140306;
-  --maroon-rich: #2c080e;
-  --maroon-surface: #3a0b13;
-  --maroon-accent: #61121d;
+  /* Antique Gold & Brass Scale */
+  --gold-primary: var(--color-antique-gold);
+  --gold-light: #E8D38A;
+  --gold-dark: #8C6A12;
+  --gold-glow: rgba(201, 162, 39, 0.22);
+  --gold-border: rgba(201, 162, 39, 0.35);
 
-  /* Temple Green / Moss */
-  --green-temple: #0d2818;
-  --green-accent: #1b4332;
+  /* Deep Wine & Maroon Scale */
+  --maroon-deep: var(--color-deep-shadow);
+  --maroon-rich: var(--color-primary);
+  --maroon-surface: var(--color-secondary);
+  --maroon-accent: #7A131E;
 
-  /* Saffron / Kesari */
-  --saffron-radiant: #e85d04;
-  --saffron-light: #ff7700;
-  --saffron-glow: rgba(232, 93, 4, 0.3);
+  /* Sacred Green & Saffron Scales */
+  --green-temple: var(--color-muted-green);
+  --green-accent: #43653E;
+  --saffron-radiant: var(--color-saffron);
+  --saffron-light: #F09B2B;
+  --saffron-glow: rgba(216, 134, 27, 0.25);
 
-  /* Antique Parchment & Cream */
-  --parchment-pure: #faf5e8;
-  --parchment-warm: #f3e9d2;
-  --parchment-muted: #c9bca6;
+  /* Parchment & Text Scale (Optimized for Contrast & Readability) */
+  --parchment-pure: #FAF5E8;
+  --parchment-warm: var(--color-warm-ivory);
+  --parchment-muted: #C9BCA6;
 
-  /* Dark Atmosphere & Accents */
-  --bg-deep: #0a0204;
-  --bg-overlay: rgba(10, 2, 4, 0.85);
-  --text-primary: #faf5e8;
-  --text-secondary: #e2d2ba;
-  --text-muted: #a6937e;
+  /* Atmosphere, Background & Text Semantics */
+  --bg-deep: var(--color-deep-shadow);
+  --bg-surface: var(--color-primary);
+  --bg-card: rgba(51, 7, 12, 0.72);
+  --bg-overlay: rgba(22, 3, 6, 0.88);
+
+  --text-primary: var(--color-warm-ivory);  /* High contrast on dark */
+  --text-secondary: #D4C4A3;               /* Muted ivory for secondary data */
+  --text-muted: #9E8C76;                   /* Subtle metadata, captions */
+  --text-gold: var(--color-antique-gold);  /* Ceremonial accents only */
 
   /* ==========================================================================
-     TYPOGRAPHY TOKENS (Easily swappable)
+     2. RESTRAINED TYPOGRAPHY FAMILIES
+     - Primary Devanagari Display: Rozha One (Calligraphic high contrast)
+     - English Ceremonial Heading: Cinzel
+     - Supporting Text Family: Outfit
      ========================================================================== */
-  --font-display-devanagari: 'Rozha One', 'Yatra One', 'Gotu', serif;
+  --font-display-devanagari: 'Rozha One', serif;
   --font-display-latin: 'Cinzel', serif;
-  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* ==========================================================================
-     LAYOUT & SAFE AREA
+     3. DELIBERATE TYPOGRAPHIC SCALE (Fluid clamp() System)
+     ========================================================================== */
+  --font-size-hero-title: clamp(2.5rem, 6.5vw + 0.5rem, 4.5rem);
+  --font-size-section-title: clamp(1.75rem, 3.5vw + 0.5rem, 2.75rem);
+  --font-size-subtitle: clamp(1.05rem, 1.8vw + 0.4rem, 1.45rem);
+  --font-size-body: clamp(0.925rem, 0.8vw + 0.6rem, 1.0625rem);
+  --font-size-small: clamp(0.725rem, 0.4vw + 0.55rem, 0.825rem);
+  --font-size-btn: clamp(0.875rem, 0.8vw + 0.55rem, 1.05rem);
+
+  /* Typographic Hierarchy Metrics */
+  --line-height-tight: 1.15;
+  --line-height-heading: 1.25;
+  --line-height-normal: 1.45;
+  --line-height-body: 1.65;
+
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.08em;
+  --letter-spacing-ceremonial: 0.2em;
+
+  /* ==========================================================================
+     4. CONSISTENT SPACING TOKENS (Fluid clamp() & Modular Scale)
+     ========================================================================== */
+  --space-section-py: clamp(3.5rem, 6vw, 5.5rem);
+  --space-section-px: clamp(1.25rem, 3.5vw, 2.5rem);
+  --space-content-gap: clamp(1.5rem, 3vw, 2.5rem);
+  --space-card-gap: clamp(0.875rem, 2vw, 1.5rem);
+  --space-heading-gap: clamp(0.5rem, 1.2vw, 1rem);
+  --space-mobile-gutter: 1rem;
+
+  /* Modular Spacing Scale */
+  --space-2xs: 0.25rem; /* 4px */
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 0.75rem;  /* 12px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-2xl: 3rem;    /* 48px */
+  --space-3xl: 4.5rem;  /* 72px */
+
+  /* ==========================================================================
+     5. REUSABLE MOTION & TIMING TOKENS
+     ========================================================================== */
+  /* Consistent Easing Curves */
+  --ease-ceremonial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-ambient: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+  /* Durations */
+  --duration-fast: 150ms;
+  --duration-interaction: 250ms;
+  --duration-standard-reveal: 600ms;
+  --duration-cinematic-reveal: 1200ms;
+  --duration-slow-ambient: 3500ms;
+
+  /* Composed Transitions */
+  --transition-fast: var(--duration-fast) var(--ease-standard);
+  --transition-interaction: var(--duration-interaction) var(--ease-ceremonial);
+  --transition-reveal: var(--duration-standard-reveal) var(--ease-ceremonial);
+  --transition-cinematic: var(--duration-cinematic-reveal) var(--ease-cinematic);
+  --transition-smooth: var(--transition-cinematic);
+
+  /* ==========================================================================
+     6. LAYOUT & DEVICE SAFE AREA
      ========================================================================== */
   --container-max-width: 480px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
-
-  /* Transitions */
-  --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
 }

@@ -1,32 +1,212 @@
+/* ==========================================================================
+   SECTION 06: CLOSING / FINAL DARSHAN MOMENT
+   ========================================================================== */
+
 .section-closing {
+  position: relative;
   width: 100%;
-  padding: 3rem 1.25rem 4rem;
+  min-height: clamp(520px, 85vh, 760px);
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(2rem, 4vw, 3rem);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, rgba(68, 12, 22, 0.48) 0%, rgba(22, 3, 6, 0.98) 75%);
+  z-index: 10;
+}
+
+/* 01. Atmosphere & Soft Warm Sanctum Glow */
+.closing-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.closing-sanctum-glow {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(260px, 50vw, 480px);
+  height: clamp(260px, 50vw, 480px);
+  background: radial-gradient(circle, rgba(216, 134, 27, 0.16) 0%, rgba(201, 162, 39, 0.08) 45%, transparent 72%);
+  border-radius: 50%;
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .closing-sanctum-glow {
+    animation: closingGlowBreathe 8.5s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes closingGlowBreathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 0.92;
+  }
+}
+
+/* 02. Restrained Antique-Gold Temple Mandala Ring */
+.closing-sacred-ring-wrapper {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(280px, 46vw, 420px);
+  height: clamp(280px, 46vw, 420px);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.35;
+}
+
+.closing-sacred-ring-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 03. Central Sacred Darshan Composition */
+.closing-content-container {
   position: relative;
-  background: linear-gradient(180deg, transparent 0%, rgba(20, 3, 6, 0.95) 100%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 680px;
+  width: 100%;
+  margin: auto 0;
+  box-sizing: border-box;
 }
 
-.closing-title {
-  font-family: var(--font-display-devanagari);
-  font-size: clamp(2.2rem, 7vw, 3.2rem);
-  line-height: 1.2;
+/* Subtle, Balanced Bappa Presence */
+.closing-bappa-wrapper {
+  width: clamp(120px, 20vw, 175px);
+  max-height: 240px;
+  margin: 0 auto 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closing-bappa-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 22px rgba(216, 134, 27, 0.22));
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Top Ornamental Divider */
+.closing-ornament-divider {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 220px;
   margin-bottom: 0.5rem;
+  opacity: 0.7;
 }
 
-.closing-subtitle {
-  font-family: var(--font-display-devanagari);
-  font-size: 1.1rem;
-  color: var(--gold-light);
-  margin-bottom: 2rem;
+.divider-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--color-antique-gold, #C9A227), transparent);
 }
 
-.closing-salutation {
-  font-family: var(--font-display-latin);
+.divider-symbol {
   font-size: 0.75rem;
-  letter-spacing: 0.25em;
-  color: var(--text-muted);
+  color: var(--color-antique-gold, #C9A227);
+}
+
+/* Primary Ceremonial Title */
+.closing-title {
+  font-family: var(--font-display-devanagari, 'Rozha One', serif);
+  font-size: clamp(2.4rem, 6.2vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0.15rem 0 0.45rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+}
+
+/* Supporting Line */
+.closing-subtitle {
+  font-family: var(--font-body, 'Outfit', sans-serif);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: var(--color-warm-ivory, #F3E7C2);
+  letter-spacing: 0.04em;
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+/* Bottom Sacred Temple Ornament */
+.closing-bottom-ornament {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sacred-mantra-text {
+  font-family: var(--font-display-devanagari, 'Rozha One', serif);
+  font-size: clamp(0.85rem, 1.8vw, 0.96rem);
+  color: var(--color-antique-gold, #C9A227);
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+  text-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+/* 04. Final Elegant Creator Credit Signature */
+.closing-creator-credit {
+  position: relative;
+  z-index: 3;
+  padding-top: 2rem;
+  margin-top: auto;
+  font-family: var(--font-display-latin, 'Cinzel', serif);
+  font-size: clamp(0.68rem, 1.4vw, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(212, 196, 163, 0.42);
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.closing-creator-credit:hover {
+  color: rgba(201, 162, 39, 0.75);
+}
+
+/* 05. Responsive Mobile Accommodations */
+@media (max-width: 480px) {
+  .section-closing {
+    min-height: clamp(480px, 80vh, 640px);
+    padding: 3rem 1rem 2rem;
+  }
+
+  .closing-bappa-wrapper {
+    margin-bottom: 0.85rem;
+  }
+
+  .closing-title {
+    font-size: clamp(2.2rem, 9vw, 2.9rem);
+  }
+
+  .closing-subtitle {
+    font-size: clamp(0.92rem, 4vw, 1.05rem);
+  }
 }

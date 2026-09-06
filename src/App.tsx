@@ -28,14 +28,22 @@ export const App: React.FC = () => {
         {/* 02. Main Ganpati Hero */}
         <HeroSection />
 
+        <div className="section-ceremonial-bridge" aria-hidden="true" />
+
         {/* 03. Event Details */}
         <EventSection />
+
+        <div className="section-ceremonial-bridge" aria-hidden="true" />
 
         {/* 04. Main Attraction / Dhol Tasha */}
         <AttractionSection />
 
+        <div className="section-ceremonial-bridge" aria-hidden="true" />
+
         {/* 05. Location / Maps */}
         <LocationSection />
+
+        <div className="section-ceremonial-bridge" aria-hidden="true" />
 
         {/* 06. Final Aagman Sohala Closing */}
         <ClosingSection />

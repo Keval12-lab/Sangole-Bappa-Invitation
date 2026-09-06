@@ -16,17 +16,18 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  background-color: var(--bg-deep);
+  background-color: var(--color-deep-shadow);
 }
 
 body {
   min-height: 100vh;
   min-height: 100dvh;
   font-family: var(--font-body);
+  font-size: var(--font-size-body);
   color: var(--text-primary);
-  background: var(--bg-deep);
+  background: var(--color-deep-shadow);
   overflow-x: hidden;
-  line-height: 1.5;
+  line-height: var(--line-height-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,23 +44,23 @@ body {
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
-  background: radial-gradient(circle at 50% 0%, var(--maroon-rich) 0%, var(--bg-deep) 70%);
+  background: radial-gradient(circle at 50% 0%, var(--color-secondary) 0%, var(--color-deep-shadow) 75%);
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
   padding-left: var(--safe-left);
   padding-right: var(--safe-right);
-  transition: max-width 0.3s ease;
+  transition: max-width var(--transition-interaction);
 }
 
-@media (min-width: 840px) {
+@media (min-width: 768px) {
   .app-container {
-    max-width: 880px;
+    max-width: 860px;
     border-left: 1px solid var(--gold-border);
     border-right: 1px solid var(--gold-border);
   }
 }
 
 /* ==========================================================================
-   TYPOGRAPHY UTILITIES
+   TYPOGRAPHY UTILITIES & FLUID SCALE
    ========================================================================== */
 .font-devanagari {
   font-family: var(--font-display-devanagari);
@@ -67,7 +68,7 @@ body {
 
 .font-latin-display {
   font-family: var(--font-display-latin);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
 }
 
@@ -75,26 +76,58 @@ body {
   font-family: var(--font-body);
 }
 
-/* Gold Gradient Text */
+/* Fluid Typographic Scale Classes */
+.text-hero-title {
+  font-size: var(--font-size-hero-title);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-section-title {
+  font-size: var(--font-size-section-title);
+  line-height: var(--line-height-heading);
+}
+
+.text-subtitle {
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-normal);
+}
+
+.text-body {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-normal);
+}
+
+.text-btn {
+  font-size: var(--font-size-btn);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Antique Gold Gradient Text Accent */
 .text-gold-gradient {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--color-antique-gold) 50%, var(--gold-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
 
-/* Sacred Section Heading */
+/* Sacred Section Heading Divider */
 .sacred-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: var(--space-sm);
   font-family: var(--font-display-latin);
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  color: var(--gold-primary);
+  font-size: var(--font-size-small);
+  letter-spacing: var(--letter-spacing-ceremonial);
+  color: var(--color-antique-gold);
   text-transform: uppercase;
-  margin: 1.5rem 0 1rem;
+  margin: var(--space-lg) 0 var(--space-md);
 }
 
 .sacred-divider::before,
@@ -103,6 +136,31 @@ body {
   color: var(--gold-dark);
   font-weight: 300;
   letter-spacing: 0.1em;
+}
+
+/* Subtle Ceremonial Section Transition Bridge */
+.section-ceremonial-bridge {
+  width: 100%;
+  max-width: min(240px, 55vw);
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.28), transparent);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.section-ceremonial-bridge::after {
+  content: '❖';
+  font-size: 0.55rem;
+  color: var(--color-antique-gold);
+  background: var(--color-deep-shadow);
+  padding: 0 0.4rem;
+  opacity: 0.6;
+  line-height: 1;
 }
 
 /* ==========================================================================
@@ -119,8 +177,9 @@ button {
 }
 
 button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--gold-primary);
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-antique-gold);
   outline-offset: 3px;
 }
 
@@ -150,3 +209,4 @@ video {
     scroll-behavior: auto !important;
   }
 }
+

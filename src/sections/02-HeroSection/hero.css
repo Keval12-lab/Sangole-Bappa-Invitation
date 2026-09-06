@@ -11,11 +11,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: clamp(3.8rem, 7.5vh, 5.2rem) clamp(1rem, 3.5vw, 3rem) clamp(2rem, 4vh, 3rem);
+  padding: clamp(4.2rem, 8vh, 5.8rem) clamp(1rem, 3.5vw, 3rem) clamp(2.5rem, 4.5vh, 3.5rem);
   text-align: center;
   overflow: hidden;
-  background-color: #0b0103;
-  color: #fff8e7;
+  background-color: var(--color-deep-shadow, #160306);
+  color: var(--text-primary, #F3E7C2);
   box-sizing: border-box;
 }
 
@@ -203,9 +203,9 @@
   font-size: 13.5px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  fill: #E5BD47;
-  opacity: 0.88;
-  text-shadow: 0 0 8px rgba(201, 162, 39, 0.6);
+  fill: var(--color-warm-ivory, #F3E7C2);
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(201, 162, 39, 0.4));
 }
 
 /* Layer C: Transparent Master Ganpati Cutout (No rectangular card or box) */
@@ -270,14 +270,13 @@
   max-width: 580px;
 }
 
-/* Master Title Container: "आगमन सोहळा" with Hibiscus Crest */
+/* Master Title Container: "आगमन सोहळा" */
 .hero-master-title-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: clamp(0.5rem, 1.2vh, 0.85rem);
-  padding-right: clamp(28px, 6vw, 46px);
 }
 
 .hero-master-title {
@@ -309,25 +308,6 @@
   filter: 
     drop-shadow(0 4px 8px rgba(0, 0, 0, 0.95))
     drop-shadow(0 0 25px rgba(212, 175, 55, 0.45));
-}
-
-/* Nestled Ceremonial Red Hibiscus (Jaswand) Accent */
-.hero-hibiscus-crest {
-  position: absolute;
-  right: -16px;
-  bottom: 0px;
-  width: clamp(42px, 9vw, 62px);
-  height: clamp(42px, 9vw, 62px);
-  filter: 
-    drop-shadow(0 5px 12px rgba(0, 0, 0, 0.85))
-    drop-shadow(0 0 16px rgba(217, 4, 41, 0.5));
-  animation: heroHibiscusFloat 4.5s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes heroHibiscusFloat {
-  0% { transform: rotate(0deg) scale(0.96); }
-  100% { transform: rotate(6deg) scale(1.05); }
 }
 
 /* Subtitle: "तो येतोय... एका नविन स्वरूपात" */
@@ -403,7 +383,7 @@
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 15;
+  z-index: 9;
 }
 
 .hero-depth-petal {
@@ -415,7 +395,7 @@
 
 .hero-depth-petal.petal-front {
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
-  z-index: 16;
+  z-index: 9;
 }
 
 .hero-depth-petal.petal-back {
@@ -476,17 +456,17 @@
     margin-bottom: 1.25rem;
   }
 
-  /* Shift Sanctum Halo slightly toward the left artwork focal area */
+  /* Centered Sanctum Halo & Shloka Ring behind Ganpati */
   .hero-sanctum-halo {
-    top: 50%;
-    left: 40%;
+    top: 48%;
+    left: 50%;
     width: 660px;
     height: 660px;
   }
 
   .hero-shloka-ring-container {
-    top: 50%;
-    left: 40%;
+    top: 48%;
+    left: 50%;
     width: 560px;
     height: 560px;
   }
@@ -523,13 +503,6 @@
 
   .title-word {
     font-size: clamp(4.2rem, 5.5vw, 5.8rem);
-  }
-
-  .hero-hibiscus-crest {
-    right: -24px;
-    bottom: 6px;
-    width: 65px;
-    height: 65px;
   }
 
   .hero-devotional-subtitle {
@@ -590,12 +563,6 @@
 
   .title-word {
     font-size: 2.7rem;
-  }
-
-  .hero-hibiscus-crest {
-    width: 36px;
-    height: 36px;
-    right: -12px;
   }
 }
 

@@ -72,17 +72,16 @@
 }
 
 /* --------------------------------------------------------------------------
-   02. REALISTIC FULL-HEIGHT HEAVY RED VELVET CURTAINS
+   02. REALISTIC FULL-HEIGHT HEAVY RED VELVET CURTAINS (Perfect Symmetry & Balance)
    -------------------------------------------------------------------------- */
 .curtain-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 51.5%;
+  width: calc(50% + 1px);
   height: 100%;
   z-index: 10;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -111,82 +110,72 @@
 .left-gather {
   background: linear-gradient(
     90deg,
-    rgba(10, 1, 3, 0.8) 0%,
-    rgba(25, 3, 6, 0.35) 35%,
-    rgba(10, 1, 3, 0.75) 75%,
-    rgba(5, 0, 1, 0.95) 100%
+    rgba(10, 1, 3, 0.75) 0%,
+    rgba(25, 3, 6, 0.3) 35%,
+    rgba(10, 1, 3, 0.7) 75%,
+    rgba(5, 0, 1, 0.9) 100%
   );
 }
 
 .right-gather {
   background: linear-gradient(
     -90deg,
-    rgba(10, 1, 3, 0.8) 0%,
-    rgba(25, 3, 6, 0.35) 35%,
-    rgba(10, 1, 3, 0.75) 75%,
-    rgba(5, 0, 1, 0.95) 100%
+    rgba(10, 1, 3, 0.75) 0%,
+    rgba(25, 3, 6, 0.3) 35%,
+    rgba(10, 1, 3, 0.7) 75%,
+    rgba(5, 0, 1, 0.9) 100%
   );
 }
 
-/* Full Bleed Velvet Photo Drapes */
+/* Full Bleed Velvet Photo Drapes with Symmetrical Bottom Baseline */
 .curtain-velvet-photo {
   position: absolute;
   inset: 0;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .left-photo {
   background-image: url('/assets/decor/velvet-curtain-left.jpg');
   background-position: right bottom;
-  background-size: cover;
 }
 
 .right-photo {
   background-image: url('/assets/decor/velvet-curtain-right.jpg');
   background-position: left bottom;
-  background-size: cover;
 }
 
-/* Ambient velvet shadow for rich depth */
+/* Deep authentic velvet fold shadowing & lustrous highlights */
 .curtain-velvet-ambient-shadow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(9, 1, 3, 0.45) 0%,
-    rgba(25, 3, 6, 0.08) 35%,
-    rgba(9, 1, 3, 0.6) 100%
-  );
+  background: 
+    linear-gradient(180deg, rgba(8, 1, 2, 0.5) 0%, rgba(20, 2, 4, 0.05) 25%, rgba(8, 1, 2, 0.35) 80%, rgba(4, 0, 1, 0.75) 100%),
+    radial-gradient(ellipse 90% 100% at 50% 50%, transparent 45%, rgba(8, 1, 2, 0.3) 100%);
   pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
-   03. SUBTLE SACRED VERTICAL CENTER SEAM LIGHT (Ambient 1 of 3)
+   03. SUBTLE SACRED VERTICAL CENTER SEAM (Restrained & Non-Dominant)
    -------------------------------------------------------------------------- */
 .curtain-center-seam-glow {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 1.5px;
+  width: 1px;
   transform: translate3d(-50%, 0, 0);
   z-index: 15;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(250, 235, 176, 0.4) 15%,
-    rgba(201, 162, 39, 0.6) 45%,
-    rgba(217, 130, 27, 0.35) 75%,
+    rgba(240, 220, 150, 0.25) 15%,
+    rgba(201, 162, 39, 0.4) 45%,
+    rgba(180, 110, 20, 0.2) 75%,
     transparent 100%
   );
-  box-shadow: 0 0 8px rgba(201, 162, 39, 0.35);
-  animation: seamSubtleGlow 4s ease-in-out infinite alternate;
+  opacity: 0.4;
   pointer-events: none;
-}
-
-@keyframes seamSubtleGlow {
-  0% { opacity: 0.35; }
-  100% { opacity: 0.65; }
 }
 
 /* --------------------------------------------------------------------------
@@ -221,7 +210,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   05. TEMPLE CORNICE ARCHWAY & ORGANIC FLORAL TORAN (Ambient 2 of 3)
+   05. TEMPLE CORNICE ARCHWAY & RESTRAINED TOP TREATMENT
    -------------------------------------------------------------------------- */
 .temple-top-archway {
   position: absolute;
@@ -235,15 +224,15 @@
   align-items: center;
 }
 
-/* Carved Temple Cornice Bar (Mandap Header Lintel) */
+/* Restrained Temple Cornice Bar (Mandap Header Lintel) */
 .temple-cornice-bar {
   width: 100%;
-  height: clamp(16px, 2.4vh, 26px);
-  background: linear-gradient(180deg, #090103 0%, #2b060a 65%, #180204 100%);
-  border-bottom: 1.5px solid #c9a227;
+  height: clamp(14px, 2vh, 22px);
+  background: linear-gradient(180deg, #090103 0%, #220508 65%, #140203 100%);
+  border-bottom: 1.5px solid rgba(201, 162, 39, 0.75);
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.95),
-    inset 0 -1px 8px rgba(201, 162, 39, 0.45);
+    0 4px 16px rgba(0, 0, 0, 0.9),
+    inset 0 -1px 4px rgba(201, 162, 39, 0.35);
 }
 
 /* Organic Responsive Toran Wrapper */
@@ -252,7 +241,8 @@
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  margin-top: -3px;
+  max-width: 1100px;
+  margin-top: -2px;
   overflow: visible;
 }
 
@@ -263,20 +253,25 @@
   overflow: visible;
 }
 
-/* Bell Pendulum Sway: Synchronized subtle pair */
-.toran-bell-1, .toran-bell-3 {
-  transform-origin: top center;
+/* Bell Pendulum Sway: Synchronized subtle bell movement */
+.toran-bell-1 {
+  transform-origin: 130px 84px;
   animation: bellSwayGentle 6s ease-in-out infinite alternate;
 }
 
-.toran-bell-2, .toran-bell-4 {
-  transform-origin: top center;
-  animation: bellSwayGentle 6s ease-in-out infinite alternate-reverse;
+.toran-bell-center {
+  transform-origin: 500px 20px;
+  animation: bellSwayGentle 5.5s ease-in-out infinite alternate-reverse;
+}
+
+.toran-bell-4 {
+  transform-origin: 870px 84px;
+  animation: bellSwayGentle 6.2s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes bellSwayGentle {
-  0% { transform: rotate(-1.5deg); }
-  100% { transform: rotate(1.5deg); }
+  0% { transform: rotate(-1.2deg); }
+  100% { transform: rotate(1.2deg); }
 }
 
 /* --------------------------------------------------------------------------
