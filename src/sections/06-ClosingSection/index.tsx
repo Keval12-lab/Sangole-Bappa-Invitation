@@ -96,7 +96,7 @@ export const ClosingSection: React.FC = () => {
               tl.fromTo(
                 creditRef.current,
                 { opacity: 0 },
-                { opacity: 0.45, duration: 0.9 },
+                { opacity: 0.7, duration: 0.9 },
                 1.5
               );
             }, sectionRef);
