@@ -252,12 +252,14 @@
   pointer-events: none;
   z-index: 7;
   overflow: hidden;
+  contain: strict;
 }
 
 .dhol-ambient-petal {
   position: absolute;
   border-radius: 50% 0 50% 50%;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+  /* Removed drop-shadow filter — causing per-frame rasterization cost during CSS animation.
+     Depth is conveyed through opacity alone for mobile performance. */
   will-change: transform;
   animation: dholPetalDrift infinite alternate ease-in-out;
 }

@@ -101,7 +101,9 @@
 
 .location-destination-marker {
   transform-origin: 0px 0px;
-  will-change: transform, opacity;
+  /* will-change is not set permanently here — GSAP applies force3D during the entrance animation
+     then releases it automatically. Permanent will-change would hold an unnecessary compositor
+     layer in GPU memory for the lifetime of the page. */
 }
 
 .map-destination-badge {

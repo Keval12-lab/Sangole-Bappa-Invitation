@@ -217,7 +217,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  will-change: transform;
+  /* will-change applied only during entrance animation (GSAP handles this via force3D).
+     Permanent will-change for the ambient breathe would hold a compositor layer indefinitely,
+     consuming GPU memory. The breathe animation uses transform only, so browser auto-promotes as needed. */
   animation: heroBappaCalmBreathe 7.5s ease-in-out infinite alternate;
 }
 
@@ -384,23 +386,27 @@
   pointer-events: none;
   overflow: hidden;
   z-index: 9;
+  /* CSS containment: limits repaint scope to this layer during petal animations */
+  contain: strict;
 }
 
 .hero-depth-petal {
   position: absolute;
   border-radius: 50% 0 50% 50%;
-  will-change: transform, opacity;
+  will-change: transform;
   animation: heroPetalFloat infinite alternate ease-in-out;
 }
 
 .hero-depth-petal.petal-front {
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+  /* drop-shadow is compositor-friendly (no layout) */
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.55));
   z-index: 9;
 }
 
 .hero-depth-petal.petal-back {
-  filter: blur(1.5px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-  opacity: 0.55 !important;
+  /* Removed blur() — causes expensive rasterization on every animated frame.
+     Depth illusion achieved with lower opacity instead. */
+  opacity: 0.38 !important;
   z-index: 8;
 }
 

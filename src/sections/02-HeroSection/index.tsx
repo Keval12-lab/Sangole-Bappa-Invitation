@@ -23,6 +23,17 @@ export const HeroSection: React.FC = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: 'power2.out' },
+        onComplete: () => {
+          // Release will-change after entrance animation completes.
+          // Elements either become static or are handled by CSS animations
+          // (which the browser auto-promotes to compositor layers as needed).
+          if (sanctumHaloRef.current) sanctumHaloRef.current.style.willChange = 'auto';
+          if (shlokaRingRef.current) shlokaRingRef.current.style.willChange = 'auto';
+          if (petalsRef.current) {
+            const petals = petalsRef.current.querySelectorAll<HTMLElement>('.hero-depth-petal');
+            petals.forEach((p) => { p.style.willChange = 'auto'; });
+          }
+        },
       });
 
       // 0.00: Background atmosphere fades in
