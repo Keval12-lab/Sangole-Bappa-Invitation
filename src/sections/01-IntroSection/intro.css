@@ -282,13 +282,15 @@
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  z-index: 30;
+  z-index: 100; /* Increased to ensure it's always above everything else */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: 90%;
   max-width: 440px;
+  max-height: 90vh; /* Safety to prevent clipping */
+  pointer-events: auto;
 }
 
 /* Sacred Invocation Mantra */
@@ -452,6 +454,8 @@
     0 0 22px rgba(201, 162, 39, 0.28);
   overflow: hidden;
   cursor: pointer;
+  pointer-events: auto; /* Explicit pointer events */
+  z-index: 10; /* Guarantee it stands out in its stack */
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
