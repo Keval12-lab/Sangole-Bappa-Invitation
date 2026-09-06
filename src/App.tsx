@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { IntroSection } from '@/sections/01-IntroSection';
 import { HeroSection } from '@/sections/02-HeroSection';
 import { EventSection } from '@/sections/03-EventSection';
@@ -48,6 +49,9 @@ export const App: React.FC = () => {
         {/* 06. Final Aagman Sohala Closing */}
         <ClosingSection />
       </main>
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </>
   );
 };
