@@ -32,7 +32,8 @@ export const EVENT_DETAILS = {
 
   // Asset paths (safe public paths)
   assets: {
-    ganpatiHero: '/assets/ganpati/bapp.png',
+    ganpatiHero: '/assets/ganpati/bappa-transparent.png',
+    ganpatiMaster: '/assets/ganpati/bapp.png',
     dholLogo: '/assets/dhol/dhol-tasha-logo.png',
   },
 } as const;

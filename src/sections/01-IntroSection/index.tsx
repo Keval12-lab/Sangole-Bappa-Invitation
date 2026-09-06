@@ -19,18 +19,20 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
   const centerContentRef = useRef<HTMLDivElement | null>(null);
   const invocationRef = useRef<HTMLDivElement | null>(null);
   const emblemRef = useRef<HTMLDivElement | null>(null);
+  const highlightGlowRef = useRef<HTMLDivElement | null>(null);
   const ctaRef = useRef<HTMLButtonElement | null>(null);
   const centerGlowRef = useRef<HTMLDivElement | null>(null);
   const seamGlowRef = useRef<HTMLDivElement | null>(null);
-  const petalsRef = useRef<HTMLDivElement | null>(null);
+  const leftGatherRef = useRef<HTMLDivElement | null>(null);
+  const rightGatherRef = useRef<HTMLDivElement | null>(null);
 
-  // Gentle initial load animation for the Ganesha Emblem & ambient scene
+  // Gentle initial load animation for Ganesha Emblem
   useEffect(() => {
     if (emblemRef.current && !isOpened) {
       gsap.fromTo(
         emblemRef.current,
         { opacity: 0, scale: 0.94 },
-        { opacity: 1, scale: 1, duration: 1.4, ease: 'power2.out', delay: 0.15 }
+        { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out', delay: 0.1 }
       );
     }
   }, [isOpened]);
@@ -48,131 +50,293 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
 
     const tl = gsap.timeline({
       onComplete: () => {
+        // Release will-change hints upon completion to conserve GPU memory
+        if (leftCurtainRef.current) leftCurtainRef.current.style.willChange = 'auto';
+        if (rightCurtainRef.current) rightCurtainRef.current.style.willChange = 'auto';
+        if (centerGlowRef.current) centerGlowRef.current.style.willChange = 'auto';
         onOpen();
       },
     });
 
-    // 1. CTA Plaque press and smooth fade/contract
-    tl.to(ctaRef.current, {
-      opacity: 0,
-      scale: 0.94,
-      duration: 0.35,
-      ease: 'power2.in',
-    });
-
-    // 2. Emblem gains a warm-gold highlight & subtle scale before parting
+    // 0.00s: CTA tactile press
     tl.to(
-      emblemRef.current,
+      ctaRef.current,
       {
-        scale: 0.94,
-        filter: 'drop-shadow(0 0 35px rgba(255, 220, 90, 0.95)) drop-shadow(0 0 25px rgba(217, 4, 41, 0.85))',
-        duration: 0.4,
-        ease: 'power2.out',
+        scale: 0.95,
+        duration: 0.1,
+        ease: 'power1.inOut',
       },
-      '<'
+      0
     );
 
-    // 3. Invocation and Emblem fade out smoothly as curtain parts
-    tl.to(
-      [invocationRef.current, emblemRef.current],
-      {
-        opacity: 0,
-        duration: 0.35,
-        ease: 'power2.in',
-      },
-      '+=0.08'
-    );
+    // 0.10s: Ambient loops paused via .is-opening class
 
-    // 4. Seam glow flares and central divine sanctum light blooms
-    tl.to(
-      seamGlowRef.current,
-      {
-        opacity: 0.9,
-        width: '12px',
-        duration: 0.45,
-        ease: 'power2.out',
-      },
-      '-=0.2'
-    );
-
-    tl.to(
-      centerGlowRef.current,
-      {
-        opacity: 0.98,
-        scale: 2.3,
-        duration: 0.9,
-        ease: 'power2.out',
-      },
-      '<0.1'
-    );
-
-    // 5. Left & Right Heavy Velvet Curtains part smoothly with heavy fabric physics easing
+    // 0.12s - 0.24s: STAGE 1 — TENSION / PRE-PULL
+    // Center edges pull inward by a tiny amount before opening (physical fabric tension)
     tl.to(
       leftCurtainRef.current,
       {
-        xPercent: -105,
-        duration: 1.8,
-        ease: 'power2.inOut',
+        scaleX: 1.015,
+        xPercent: 1.2,
+        duration: 0.12,
+        ease: 'power1.in',
       },
-      '-=0.25'
+      0.12
     );
 
     tl.to(
       rightCurtainRef.current,
       {
-        xPercent: 105,
-        duration: 1.8,
-        ease: 'power2.inOut',
+        scaleX: 1.015,
+        xPercent: -1.2,
+        duration: 0.12,
+        ease: 'power1.in',
       },
-      '<'
+      0.12
     );
 
-    // 6. Release delicate floating flower petals
-    if (petalsRef.current) {
-      const petalElements = petalsRef.current.querySelectorAll('.curtain-petal');
+    // CTA fades out smoothly
+    tl.to(
+      ctaRef.current,
+      {
+        opacity: 0,
+        duration: 0.25,
+        ease: 'power2.in',
+      },
+      0.15
+    );
+
+    // Center seam separates naturally and fades out
+    if (seamGlowRef.current) {
       tl.to(
-        petalElements,
+        seamGlowRef.current,
         {
-          opacity: 0.9,
-          y: 'random(60, 220)',
-          x: 'random(-80, 80)',
-          rotation: 'random(-100, 100)',
-          duration: 1.8,
-          stagger: 0.04,
-          ease: 'power1.out',
+          opacity: 0,
+          scaleX: 0.5,
+          duration: 0.2,
+          ease: 'power2.in',
         },
-        '-=1.5'
+        0.24
       );
     }
 
-    // 7. Smooth fade of entire root container to reveal Ganpati Hero underneath
+    // 0.24s - 1.55s: STAGE 2 & 3 — INITIAL PARTING & FABRIC GATHERING
+    // Left curtain: Outer edge anchored at 0% 0%.
+    // Travels left and gathers: xPercent to -72%, scaleX to 0.72 (compresses by 28%, keeping lush fold density)
     tl.to(
-      rootRef.current,
+      leftCurtainRef.current,
       {
-        opacity: 0,
+        scaleX: 0.72,
+        xPercent: -72,
+        duration: 1.35,
+        ease: 'power3.inOut',
+        force3D: true,
+      },
+      0.24
+    );
+
+    // Right curtain: Outer edge anchored at 100% 0%.
+    // Travels right and gathers: xPercent to +72%, scaleX to 0.72
+    tl.to(
+      rightCurtainRef.current,
+      {
+        scaleX: 0.72,
+        xPercent: 72,
+        duration: 1.35,
+        ease: 'power3.inOut',
+        force3D: true,
+      },
+      0.24
+    );
+
+    // Secondary motion: Bottom fringe / tassel inertia (lagging behind pull, then swinging forward)
+    tl.to(
+      leftCurtainRef.current,
+      {
+        skewY: 1.8,
         duration: 0.55,
         ease: 'power2.out',
       },
-      '-=0.35'
+      0.25
     );
-  };
+    tl.to(
+      leftCurtainRef.current,
+      {
+        skewY: -0.6,
+        duration: 0.55,
+        ease: 'power2.inOut',
+      },
+      0.80
+    );
+    tl.to(
+      leftCurtainRef.current,
+      {
+        skewY: 0,
+        duration: 0.45,
+        ease: 'power2.out',
+      },
+      1.35
+    );
 
-  // 8 natural scattered flower petals (Kesari, Gold, Rose)
-  const petals = [
-    { color: '#FF7700', left: '47%', width: 14, height: 16 },
-    { color: '#FFB703', left: '51%', width: 12, height: 14 },
-    { color: '#C1121F', left: '49%', width: 15, height: 17 },
-    { color: '#FF7700', left: '53%', width: 13, height: 15 },
-    { color: '#FFB703', left: '45%', width: 11, height: 13 },
-    { color: '#C1121F', left: '52%', width: 14, height: 16 },
-    { color: '#FFA200', left: '48%', width: 13, height: 14 },
-    { color: '#FF7700', left: '50%', width: 15, height: 15 },
-  ];
+    tl.to(
+      rightCurtainRef.current,
+      {
+        skewY: -1.8,
+        duration: 0.55,
+        ease: 'power2.out',
+      },
+      0.25
+    );
+    tl.to(
+      rightCurtainRef.current,
+      {
+        skewY: 0.6,
+        duration: 0.55,
+        ease: 'power2.inOut',
+      },
+      0.80
+    );
+    tl.to(
+      rightCurtainRef.current,
+      {
+        skewY: 0,
+        duration: 0.45,
+        ease: 'power2.out',
+      },
+      1.35
+    );
+
+    // Gather shadows deepen as fabric bunches up into dense folds
+    if (leftGatherRef.current && rightGatherRef.current) {
+      tl.to(
+        [leftGatherRef.current, rightGatherRef.current],
+        {
+          opacity: 0.7,
+          duration: 1.0,
+          ease: 'power2.inOut',
+        },
+        0.35
+      );
+    }
+
+    // 0.30s: Center sacred warm light softly illuminates behind opening (subtle, non-dominant)
+    if (centerGlowRef.current) {
+      tl.to(
+        centerGlowRef.current,
+        {
+          opacity: 0.4,
+          scale: 1.15,
+          duration: 0.7,
+          ease: 'power2.out',
+        },
+        0.30
+      );
+    }
+
+    // 0.35s: Sacred Invocation fades smoothly with slight upward drift
+    if (invocationRef.current) {
+      tl.to(
+        invocationRef.current,
+        {
+          opacity: 0,
+          y: -10,
+          duration: 0.35,
+          ease: 'power2.out',
+        },
+        0.35
+      );
+    }
+
+    // 0.38s: Intro emblem and aura fade smoothly as curtains part to unveil the Hero portrait underneath
+    tl.to(
+      [emblemRef.current, highlightGlowRef.current],
+      {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.35,
+        ease: 'power2.out',
+      },
+      0.38
+    );
+
+    // 1.55s - 1.95s: STAGE 4 — HEAVY-FABRIC FOLLOW THROUGH & SETTLE (Inertia overshoot)
+    // Left curtain overshoots slightly to -75% / scaleX 0.69, then settles to -71% / scaleX 0.72
+    // Leaving approximately 14% of the curtain visible as a ceremonial frame!
+    tl.to(
+      leftCurtainRef.current,
+      {
+        scaleX: 0.69,
+        xPercent: -75,
+        duration: 0.2,
+        ease: 'power1.out',
+      },
+      1.59
+    );
+    tl.to(
+      leftCurtainRef.current,
+      {
+        scaleX: 0.72,
+        xPercent: -71,
+        duration: 0.25,
+        ease: 'power2.inOut',
+      },
+      1.79
+    );
+
+    // Right curtain overshoots slightly to +75% / scaleX 0.69, then settles to +71% / scaleX 0.72
+    tl.to(
+      rightCurtainRef.current,
+      {
+        scaleX: 0.69,
+        xPercent: 75,
+        duration: 0.2,
+        ease: 'power1.out',
+      },
+      1.59
+    );
+    tl.to(
+      rightCurtainRef.current,
+      {
+        scaleX: 0.72,
+        xPercent: 71,
+        duration: 0.25,
+        ease: 'power2.inOut',
+      },
+      1.79
+    );
+
+    // Center glow softens to 0 as curtains finish settling
+    if (centerGlowRef.current) {
+      tl.to(
+        centerGlowRef.current,
+        {
+          opacity: 0,
+          duration: 0.35,
+          ease: 'power2.out',
+        },
+        1.65
+      );
+    }
+
+    // Temple floor shadows fade to clear the view for HeroSection
+    const floorEl = rootRef.current?.querySelector('.temple-bottom-floor');
+    if (floorEl) {
+      tl.to(
+        floorEl,
+        {
+          opacity: 0,
+          duration: 0.4,
+          ease: 'power2.out',
+        },
+        1.65
+      );
+    }
+  };
 
   return (
     <section
       ref={rootRef}
-      className={`curtain-entry-root ${isOpened ? 'is-opened' : ''}`}
+      className={`curtain-entry-root ${isOpening ? 'is-opening' : ''} ${isOpened ? 'is-opened' : ''}`}
       aria-label="Ceremonial Royal Indian Temple Mandap Entrance"
       aria-hidden={isOpened}
     >
@@ -183,15 +347,17 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
       <div ref={leftCurtainRef} className="curtain-panel left-curtain">
         <div className="curtain-velvet-photo left-photo" />
         <div className="curtain-velvet-ambient-shadow" />
+        <div ref={leftGatherRef} className="curtain-velvet-gather-shadow left-gather" />
       </div>
 
-      {/* 03. Vertical Center Seam Light (Subtle sacred architectural seam) */}
+      {/* 03. Vertical Center Seam Light */}
       <div ref={seamGlowRef} className="curtain-center-seam-glow" aria-hidden="true" />
 
       {/* 04. Right Heavy Velvet Curtain Panel */}
       <div ref={rightCurtainRef} className="curtain-panel right-curtain">
         <div className="curtain-velvet-photo right-photo" />
         <div className="curtain-velvet-ambient-shadow" />
+        <div ref={rightGatherRef} className="curtain-velvet-gather-shadow right-gather" />
       </div>
 
       {/* 05. Ancient Carved Temple Stone Pillars (Framing Left & Right) */}
@@ -213,8 +379,9 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
           <span className="invocation-mark">꧂</span>
         </div>
 
-        {/* Custom Sacred Ganesha Emblem with Multi-Layered Glow & Contrast Backplate */}
+        {/* Custom Sacred Ganesha Emblem with Warm Highlight Layer */}
         <div ref={emblemRef} className="curtain-ganesha-emblem-container">
+          <div ref={highlightGlowRef} className="emblem-gold-highlight-glow" aria-hidden="true" />
           <GaneshaEmblem className="entry-ganesha-emblem" isPressed={isOpening} />
         </div>
 
@@ -240,7 +407,6 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
           <span className="curtain-cta-sub">— INVITATION —</span>
 
           <div className="curtain-pointer-wrapper" aria-hidden="true">
-            <span className="curtain-pointer-ripple" />
             <div className="curtain-pointer-circle">
               <svg
                 className="curtain-pointer-icon"
@@ -267,22 +433,6 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
       <div className="temple-bottom-floor" aria-hidden="true">
         <div className="temple-floor-shadow" />
         <div className="temple-floor-reflection" />
-      </div>
-
-      {/* 09. Celebration Floating Petals */}
-      <div ref={petalsRef} className="curtain-petals-container" aria-hidden="true">
-        {petals.map((petal, index) => (
-          <span
-            key={index}
-            className="curtain-petal"
-            style={{
-              left: petal.left,
-              width: `${petal.width}px`,
-              height: `${petal.height}px`,
-              backgroundColor: petal.color,
-            }}
-          />
-        ))}
       </div>
     </section>
   );
