@@ -1,9 +1,8 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { Navigation, ExternalLink, Calendar, Clock, MapPin } from 'lucide-react';
+import { EVENT_DETAILS } from '@/utils/constants';
 import './location.css';
-
-const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/sdX7fcnRjL5s2seHA';
 
 export const LocationSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -300,7 +299,7 @@ export const LocationSection: React.FC = () => {
           {/* Conceptual Location Label Tag */}
           <div className="map-destination-badge">
             <span className="badge-dot" />
-            <span>21.241430° N, 72.856315° E</span>
+            <span>{EVENT_DETAILS.latitude}° N, {EVENT_DETAILS.longitude}° E</span>
           </div>
         </div>
 
@@ -321,13 +320,13 @@ export const LocationSection: React.FC = () => {
             {/* Sacred Address Details */}
             <address className="address-lines-block">
               <div className="address-primary-line">
-                82, Hari Om Nagar - 2
+                {EVENT_DETAILS.venueLine1.replace(/,\s*$/, '')}
               </div>
               <div className="address-secondary-line">
-                New Kosad Road, Amroli
+                {EVENT_DETAILS.venueLine2.replace(/,\s*$/, '')}
               </div>
               <div className="address-city-line">
-                Surat, Gujarat
+                {EVENT_DETAILS.venueCity}, Gujarat
               </div>
             </address>
 
@@ -346,7 +345,7 @@ export const LocationSection: React.FC = () => {
             {/* Single Prominent Google Maps CTA */}
             <a
               ref={ctaBtnRef}
-              href={GOOGLE_MAPS_LINK}
+              href={EVENT_DETAILS.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="location-cta-btn"

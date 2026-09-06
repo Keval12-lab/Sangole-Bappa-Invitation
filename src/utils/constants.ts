@@ -24,7 +24,7 @@ export const EVENT_DETAILS = {
   longitude: 72.856315,
   coordinates: '21.241430, 72.856315',
   coordinatesArray: [72.856315, 21.241430],
-  googleMapsUrl: 'https://www.google.com/maps?q=21.241430,72.856315',
+  googleMapsUrl: 'https://maps.app.goo.gl/sdX7fcnRjL5s2seHA',
 
   // Main Attraction
   attractionTitle: 'DJ ढोल ताशा',
