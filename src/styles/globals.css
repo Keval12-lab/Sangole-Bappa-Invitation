@@ -112,6 +112,7 @@ body {
 .text-gold-gradient {
   background: linear-gradient(135deg, var(--gold-light) 0%, var(--color-antique-gold) 50%, var(--gold-dark) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
