@@ -41,6 +41,12 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
     if (isOpening || isOpened) return;
     setIsOpening(true);
 
+    // FIX: Safely remove focus from the CTA before the Intro root becomes aria-hidden.
+    // This prevents the Chrome accessibility warning: "Blocked aria-hidden on an element because its descendant retained focus."
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
