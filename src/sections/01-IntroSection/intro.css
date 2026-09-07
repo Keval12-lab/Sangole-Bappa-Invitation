@@ -45,6 +45,16 @@
   display: none !important;
 }
 
+.curtain-entry-root.is-opened .left-curtain {
+  transform: translate3d(-71%, 0, 0) scaleX(0.72) !important;
+  pointer-events: none;
+}
+
+.curtain-entry-root.is-opened .right-curtain {
+  transform: translate3d(71%, 0, 0) scaleX(0.72) !important;
+  pointer-events: none;
+}
+
 /* --------------------------------------------------------------------------
    01. SACRED DIVINE INNER SANCTUM GLOW (Lightweight Compositor-Friendly)
    -------------------------------------------------------------------------- */
@@ -154,6 +164,8 @@
     radial-gradient(ellipse 90% 100% at 50% 50%, transparent 45%, rgba(8, 1, 2, 0.3) 100%);
   pointer-events: none;
 }
+
+
 
 /* --------------------------------------------------------------------------
    03. SUBTLE SACRED VERTICAL CENTER SEAM (Restrained & Non-Dominant)
@@ -293,78 +305,90 @@
   pointer-events: auto;
 }
 
-/* Sacred Invocation Mantra */
-.curtain-invocation {
-  font-family: var(--font-display-devanagari);
+/* --------------------------------------------------------------------------
+   06. SACRED INVOCATION PLAQUE (Structured & Ceremonially Inscribed)
+   -------------------------------------------------------------------------- */
+.curtain-invocation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: clamp(1.2rem, 3.2vh, 2.2rem);
+  will-change: transform, opacity;
+  z-index: 5;
+}
+
+.invocation-flourish-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: clamp(180px, 45vw, 280px);
+  opacity: 0.7;
+}
+
+.flourish-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #c9a227 50%, #ffe58f 100%);
+}
+
+.flourish-line.right {
+  background: linear-gradient(90deg, #ffe58f 0%, #c9a227 50%, transparent 100%);
+}
+
+.flourish-diamond {
+  color: #e5bd47;
+  font-size: 0.75rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(201, 162, 39, 0.6));
+}
+
+.curtain-invocation-pill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  color: #faebb0;
-  letter-spacing: 0.12em;
-  text-shadow: 
-    0 3px 12px rgba(0, 0, 0, 0.95),
-    0 0 16px rgba(201, 162, 39, 0.6);
-  white-space: nowrap;
-  margin-bottom: clamp(0.75rem, 2vh, 1.35rem);
-  will-change: transform, opacity;
-}
-
-.invocation-mark {
-  color: #c9a227;
-  font-size: 1.15em;
-  opacity: 0.85;
+  padding: 0.3rem 1.6rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(38, 5, 11, 0.75) 20%,
+    rgba(50, 6, 15, 0.9) 50%,
+    rgba(38, 5, 11, 0.75) 80%,
+    transparent 100%
+  );
+  border-radius: 4px;
 }
 
 .invocation-mantra {
-  font-size: inherit;
+  font-family: var(--font-display-devanagari);
+  font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+  font-weight: 700;
+  color: #faebb0;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  text-shadow: 
+    0 1px 1px rgba(255, 235, 170, 0.45),
+    0 3px 12px rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(201, 162, 39, 0.6);
 }
 
 /* --------------------------------------------------------------------------
-   07. SACRED GANESHA EMBLEM — HIGH CONTRAST & SACRED AURA (Ambient 3 of 3)
+   07. CIRCULAR CEREMONIAL MEDALLION (Interactive CTA)
    -------------------------------------------------------------------------- */
-.curtain-ganesha-emblem-container {
+.curtain-medallion-container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
-  margin-bottom: clamp(1rem, 2.8vh, 1.85rem);
+  z-index: 10;
   will-change: transform, opacity;
 }
 
-/* Pre-rendered hardware-accelerated gold highlight flash layer with restrained warm ivory core */
+/* Pre-rendered gold highlight glow layer */
 .emblem-gold-highlight-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  width: 150%;
-  height: 150%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 246, 215, 0.48) 0%,
-    rgba(240, 198, 85, 0.32) 30%,
-    rgba(205, 145, 30, 0.14) 55%,
-    rgba(110, 25, 12, 0.03) 75%,
-    transparent 100%
-  );
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
-  will-change: transform, opacity;
-}
-
-.ganesha-emblem-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Layer 1: Dark wine-black contrast halo to separate emblem from red velvet */
-.ganesha-emblem-dark-backdrop {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -373,217 +397,125 @@
   height: 145%;
   border-radius: 50%;
   background: radial-gradient(
-    circle at 50% 50%,
-    rgba(10, 1, 3, 0.98) 0%,
-    rgba(24, 2, 6, 0.88) 46%,
-    rgba(42, 4, 11, 0.42) 68%,
-    transparent 88%
+    circle,
+    rgba(255, 246, 215, 0.45) 0%,
+    rgba(240, 198, 85, 0.3) 30%,
+    rgba(205, 145, 30, 0.12) 55%,
+    transparent 75%
   );
-  filter: blur(14px);
+  opacity: 0;
   pointer-events: none;
-  z-index: -2;
+  z-index: 1;
+  will-change: transform, opacity;
 }
 
-/* Layer 2: Warm sacred golden aura & soft diffusion (calm, subtle, non-neon in closed state) */
-.ganesha-emblem-halo {
+.curtain-cta-medallion,
+.curtain-cta-plaque {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(136px, 35vw, 170px);
+  height: clamp(136px, 35vw, 170px);
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto !important;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+  outline: none;
+  box-shadow: 
+    0 14px 38px rgba(0, 0, 0, 0.95),
+    0 0 24px rgba(201, 162, 39, 0.32);
+}
+
+.curtain-entry-root.is-opening .curtain-cta-medallion,
+.curtain-entry-root.is-opening .curtain-cta-plaque {
+  transition: none !important;
+}
+
+.curtain-cta-medallion:focus-visible,
+.curtain-cta-plaque:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 4px;
+}
+
+.curtain-cta-medallion:hover,
+.curtain-cta-plaque:hover {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 
+    0 18px 48px rgba(0, 0, 0, 0.98),
+    0 0 36px rgba(224, 150, 30, 0.55);
+}
+
+.curtain-cta-medallion:active,
+.curtain-cta-medallion.is-pressed,
+.curtain-cta-plaque:active,
+.curtain-cta-plaque.is-pressed {
+  transform: scale(0.96);
+}
+
+.ceremonial-medallion-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.medallion-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.medallion-svg * {
+  pointer-events: none;
+}
+
+/* Warm ambient halo diffusing from behind medallion */
+.medallion-ambient-halo {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  width: 128%;
-  height: 128%;
+  width: 130%;
+  height: 130%;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(248, 222, 136, 0.34) 0%,
-    rgba(205, 160, 42, 0.18) 42%,
-    rgba(165, 80, 22, 0.06) 65%,
+    rgba(255, 225, 120, 0.35) 0%,
+    rgba(216, 145, 30, 0.20) 38%,
+    rgba(140, 25, 12, 0.05) 64%,
     transparent 78%
   );
   filter: blur(14px);
   pointer-events: none;
   z-index: -1;
-  opacity: 0.75;
-}
-
-/* Layer 3: Vector Ganesha with subtle gold rim glow & shadow */
-.ganesha-emblem-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-  filter: 
-    drop-shadow(0 0 1.2px rgba(255, 235, 170, 0.85))
-    drop-shadow(0 0 14px rgba(201, 162, 39, 0.45))
-    drop-shadow(0 10px 24px rgba(0, 0, 0, 0.95));
-}
-
-.ganesha-emblem-wrapper.is-animated {
-  animation: emblemGentleBreathe 5s ease-in-out infinite alternate;
-}
-
-@keyframes emblemGentleBreathe {
-  0% { transform: scale(0.98); }
-  100% { transform: scale(1.01); }
-}
-
-.ganesha-emblem-wrapper.is-pressed {
-  transform: scale(0.95);
-}
-
-/* --------------------------------------------------------------------------
-   08. LUXURIOUS CEREMONIAL INVITATION PLAQUE (CTA)
-   -------------------------------------------------------------------------- */
-.curtain-cta-plaque {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(
-    180deg,
-    rgba(38, 5, 11, 0.96) 0%,
-    rgba(22, 3, 7, 0.98) 55%,
-    rgba(12, 1, 4, 0.99) 100%
-  );
-  border: 1.5px solid #c9a227;
-  border-radius: 12px;
-  box-shadow: 
-    0 14px 38px rgba(0, 0, 0, 0.96),
-    inset 0 1px 1px rgba(255, 235, 170, 0.35),
-    inset 0 -1px 8px rgba(0, 0, 0, 0.85),
-    0 0 22px rgba(201, 162, 39, 0.28);
-  overflow: hidden;
-  cursor: pointer;
-  pointer-events: auto; /* Explicit pointer events */
-  z-index: 10; /* Guarantee it stands out in its stack */
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-/* Thin secondary inner border */
-.curtain-cta-plaque::before {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border-radius: 8px;
-  border: 1px solid rgba(250, 235, 176, 0.28);
-  pointer-events: none;
-}
-
-/* Subtle Shimmer Sweep across Plaque (Static elegant sheen) */
-.plaque-shimmer-sweep {
-  position: absolute;
-  top: -50%;
-  left: 20%;
-  width: 50%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 235, 170, 0.1) 50%,
-    transparent 100%
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-/* Ornamental Corner Notches */
-.plaque-corner {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-color: #e5bd47;
-  border-style: solid;
-  pointer-events: none;
-  z-index: 2;
   opacity: 0.85;
 }
 
-.plaque-corner.top-left {
-  top: 5px;
-  left: 5px;
-  border-width: 1px 0 0 1px;
+@media (prefers-reduced-motion: no-preference) {
+  .ceremonial-medallion-root {
+    animation: medallionGentleBreathe 5.5s ease-in-out infinite alternate;
+  }
 }
 
-.plaque-corner.top-right {
-  top: 5px;
-  right: 5px;
-  border-width: 1px 1px 0 0;
-}
-
-.plaque-corner.bottom-left {
-  bottom: 5px;
-  left: 5px;
-  border-width: 0 0 1px 1px;
-}
-
-.plaque-corner.bottom-right {
-  bottom: 5px;
-  right: 5px;
-  border-width: 0 1px 1px 0;
-}
-
-/* Hover & Active States */
-.curtain-cta-plaque:hover {
-  transform: translateY(-2px);
-  border-color: #faebb0;
-  box-shadow: 
-    0 18px 48px rgba(0, 0, 0, 0.98),
-    inset 0 1px 2px rgba(255, 235, 170, 0.45),
-    inset 0 -1px 10px rgba(0, 0, 0, 0.9),
-    0 0 32px rgba(201, 162, 39, 0.45);
-}
-
-.curtain-cta-plaque:active {
-  transform: scale(0.98);
-}
-
-/* Typography Hierarchy */
-.curtain-cta-title {
-  font-family: var(--font-display-latin, 'Cinzel', serif);
-  font-weight: 700;
-  color: #f7eed8;
-  letter-spacing: 0.22em;
-  line-height: 1.2;
-  text-shadow: 
-    0 2px 6px rgba(0, 0, 0, 0.9),
-    0 0 12px rgba(201, 162, 39, 0.55);
-  white-space: nowrap;
-}
-
-.curtain-cta-sub {
-  font-family: var(--font-display-latin, 'Cinzel', serif);
-  font-weight: 600;
-  color: #c9a227;
-  letter-spacing: 0.28em;
-  opacity: 0.9;
-  white-space: nowrap;
-  line-height: 1.2;
-}
-
-/* Tap Icon Inside Ornamental Zone */
-.curtain-pointer-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.curtain-pointer-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 162, 39, 0.2) 0%, rgba(38, 5, 11, 0.6) 100%);
-  border: 1px solid rgba(201, 162, 39, 0.5);
-  box-shadow: 0 0 8px rgba(201, 162, 39, 0.3);
-}
-
-.curtain-pointer-icon {
-  color: #f7eed8;
-  filter: drop-shadow(0 0 4px rgba(201, 162, 39, 0.7));
+@keyframes medallionGentleBreathe {
+  0% {
+    transform: scale(0.985);
+  }
+  100% {
+    transform: scale(1.015);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -628,37 +560,28 @@
   }
 
   .temple-mandap-toran {
-    max-width: 90%;
+    max-width: 92%;
   }
 
   .entry-center-stack {
     max-width: 320px;
   }
 
-  .curtain-invocation {
-    font-size: clamp(1.12rem, 4.2vw, 1.28rem);
+  .curtain-invocation-container {
+    margin-bottom: clamp(1rem, 2.8vh, 1.6rem);
   }
 
-  .entry-ganesha-emblem {
-    width: clamp(90px, 23vw, 104px);
-    height: clamp(90px, 23vw, 104px);
+  .invocation-flourish-bar {
+    width: clamp(170px, 46vw, 240px);
   }
 
-  .curtain-cta-plaque {
-    padding: 0.85rem 1.65rem 0.75rem;
+  .invocation-mantra {
+    font-size: clamp(1.1rem, 4.4vw, 1.28rem);
   }
 
-  .curtain-cta-title {
-    font-size: 0.92rem;
-  }
-
-  .curtain-cta-sub {
-    font-size: 0.65rem;
-    margin-top: 0.2rem;
-  }
-
-  .curtain-pointer-wrapper {
-    margin-top: 0.45rem;
+  .curtain-cta-medallion {
+    width: 136px;
+    height: 136px;
   }
 }
 
@@ -672,37 +595,24 @@
   }
 
   .temple-mandap-toran {
-    max-width: 82%;
+    max-width: 84%;
   }
 
   .entry-center-stack {
     max-width: 350px;
   }
 
-  .curtain-invocation {
-    font-size: 1.25rem;
+  .curtain-invocation-container {
+    margin-bottom: 1.6rem;
   }
 
-  .entry-ganesha-emblem {
-    width: 108px;
-    height: 108px;
+  .invocation-mantra {
+    font-size: 1.28rem;
   }
 
-  .curtain-cta-plaque {
-    padding: 0.95rem 1.85rem 0.85rem;
-  }
-
-  .curtain-cta-title {
-    font-size: 0.98rem;
-  }
-
-  .curtain-cta-sub {
-    font-size: 0.68rem;
-    margin-top: 0.22rem;
-  }
-
-  .curtain-pointer-wrapper {
-    margin-top: 0.55rem;
+  .curtain-cta-medallion {
+    width: 146px;
+    height: 146px;
   }
 }
 
@@ -723,30 +633,17 @@
     max-width: 380px;
   }
 
-  .curtain-invocation {
-    font-size: 1.38rem;
+  .curtain-invocation-container {
+    margin-bottom: 1.8rem;
   }
 
-  .entry-ganesha-emblem {
-    width: 118px;
-    height: 118px;
+  .invocation-mantra {
+    font-size: 1.4rem;
   }
 
-  .curtain-cta-plaque {
-    padding: 1.05rem 2.2rem 0.95rem;
-  }
-
-  .curtain-cta-title {
-    font-size: 1.05rem;
-  }
-
-  .curtain-cta-sub {
-    font-size: 0.72rem;
-    margin-top: 0.25rem;
-  }
-
-  .curtain-pointer-wrapper {
-    margin-top: 0.65rem;
+  .curtain-cta-medallion {
+    width: 156px;
+    height: 156px;
   }
 }
 
@@ -767,30 +664,17 @@
     max-width: 400px;
   }
 
-  .curtain-invocation {
-    font-size: 1.45rem;
+  .curtain-invocation-container {
+    margin-bottom: 2.1rem;
   }
 
-  .entry-ganesha-emblem {
-    width: 126px;
-    height: 126px;
+  .invocation-mantra {
+    font-size: 1.48rem;
   }
 
-  .curtain-cta-plaque {
-    padding: 1.15rem 2.45rem 1.05rem;
-  }
-
-  .curtain-cta-title {
-    font-size: 1.08rem;
-  }
-
-  .curtain-cta-sub {
-    font-size: 0.74rem;
-    margin-top: 0.28rem;
-  }
-
-  .curtain-pointer-wrapper {
-    margin-top: 0.65rem;
+  .curtain-cta-medallion {
+    width: 165px;
+    height: 165px;
   }
 }
 
@@ -811,29 +695,16 @@
     max-width: 440px;
   }
 
-  .curtain-invocation {
-    font-size: clamp(1.48rem, 1.35vw, 1.7rem);
+  .curtain-invocation-container {
+    margin-bottom: 2.3rem;
   }
 
-  .entry-ganesha-emblem {
-    width: clamp(130px, 9vw, 145px);
-    height: clamp(130px, 9vw, 145px);
+  .invocation-mantra {
+    font-size: 1.55rem;
   }
 
-  .curtain-cta-plaque {
-    padding: 1.2rem 2.65rem 1.1rem;
-  }
-
-  .curtain-cta-title {
-    font-size: 1.12rem;
-  }
-
-  .curtain-cta-sub {
-    font-size: 0.76rem;
-    margin-top: 0.3rem;
-  }
-
-  .curtain-pointer-wrapper {
-    margin-top: 0.75rem;
+  .curtain-cta-medallion {
+    width: 172px;
+    height: 172px;
   }
 }

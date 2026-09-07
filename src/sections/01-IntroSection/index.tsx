@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { EVENT_DETAILS } from '@/utils/constants';
-import { GaneshaEmblem } from '@/components/common/GaneshaEmblem';
 import { MandapToran } from '@/components/intro/MandapToran';
+import { CeremonialMedallion } from '@/components/intro/CeremonialMedallion';
+import { audioManager } from '@/utils/audioManager';
 import './intro.css';
 
 interface IntroSectionProps {
@@ -41,17 +42,24 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
     if (isOpening || isOpened) return;
     setIsOpening(true);
 
-    // FIX: Safely remove focus from the CTA before the Intro root becomes aria-hidden.
-    // This prevents the Chrome accessibility warning: "Blocked aria-hidden on an element because its descendant retained focus."
-    if (document.activeElement instanceof HTMLElement) {
-      document.activeElement.blur();
+    // Prepare / unlock devotional audio playback within user gesture context (safe isolation)
+    try {
+      audioManager.prepare();
+    } catch {
+      // Audio is an enhancement, never block curtain opening
     }
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      onOpen();
-      return;
+    // FIX: Safely remove focus from the CTA before the Intro root becomes aria-hidden.
+    // This prevents the Chrome accessibility warning: "Blocked aria-hidden on an element because its descendant retained focus."
+    try {
+      if (ctaRef.current) {
+        ctaRef.current.blur();
+      }
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    } catch {
+      // Safe fallback
     }
 
     const tl = gsap.timeline({
@@ -60,6 +68,14 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
         if (leftCurtainRef.current) leftCurtainRef.current.style.willChange = 'auto';
         if (rightCurtainRef.current) rightCurtainRef.current.style.willChange = 'auto';
         if (centerGlowRef.current) centerGlowRef.current.style.willChange = 'auto';
+
+        // Exact timeline milestone: curtain opening completes, hands off to Hero
+        try {
+          audioManager.play();
+        } catch {
+          // Safe fallback
+        }
+
         onOpen();
       },
     });
@@ -376,63 +392,41 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
         <MandapToran className="temple-mandap-toran" />
       </div>
 
-      {/* 07. Sacred Center Stack: Mantra, Emblem, and Luxury Invitation Plaque */}
+      {/* 07. Sacred Center Stack: Refined Mantra Invocation & Circular Ceremonial Medallion */}
       <div ref={centerContentRef} className="curtain-center-content entry-center-stack">
-        {/* Mantra Invocation */}
-        <div ref={invocationRef} className="curtain-invocation">
-          <span className="invocation-mark">꧁</span>
-          <span className="invocation-mantra">{EVENT_DETAILS.invocation}</span>
-          <span className="invocation-mark">꧂</span>
-        </div>
-
-        {/* Custom Sacred Ganesha Emblem with Warm Highlight Layer */}
-        <div ref={emblemRef} className="curtain-ganesha-emblem-container">
-          <div ref={highlightGlowRef} className="emblem-gold-highlight-glow" aria-hidden="true" />
-          <GaneshaEmblem className="entry-ganesha-emblem" isPressed={isOpening} />
-        </div>
-
-        {/* Luxury Ceremonial Invitation Plaque */}
-        <button
-          ref={ctaRef}
-          type="button"
-          className="curtain-cta-plaque"
-          onClick={handleTapToOpen}
-          disabled={isOpening}
-          aria-label="Tap to open royal invitation"
-        >
-          {/* Subtle engraved corner filigree notches */}
-          <span className="plaque-corner top-left" aria-hidden="true" />
-          <span className="plaque-corner top-right" aria-hidden="true" />
-          <span className="plaque-corner bottom-left" aria-hidden="true" />
-          <span className="plaque-corner bottom-right" aria-hidden="true" />
-
-          {/* Shimmer reflection layer */}
-          <span className="plaque-shimmer-sweep" aria-hidden="true" />
-
-          <span className="curtain-cta-title">TAP TO OPEN</span>
-          <span className="curtain-cta-sub">— INVITATION —</span>
-
-          <div className="curtain-pointer-wrapper" aria-hidden="true">
-            <div className="curtain-pointer-circle">
-              <svg
-                className="curtain-pointer-icon"
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-              </svg>
-            </div>
+        {/* Sacred Mantra Invocation with Symmetrical Ornamental Lines */}
+        <div ref={invocationRef} className="curtain-invocation-container">
+          <div className="invocation-flourish-bar top" aria-hidden="true">
+            <span className="flourish-line left" />
+            <span className="flourish-diamond">❖</span>
+            <span className="flourish-line right" />
           </div>
-        </button>
+
+          <div className="curtain-invocation-pill">
+            <span className="invocation-mantra font-devanagari">{EVENT_DETAILS.invocation}</span>
+          </div>
+
+          <div className="invocation-flourish-bar bottom" aria-hidden="true">
+            <span className="flourish-line left" />
+            <span className="flourish-diamond">❖</span>
+            <span className="flourish-line right" />
+          </div>
+        </div>
+
+        {/* Circular Ceremonial Temple Door Medallion (Interactive CTA) */}
+        <div ref={emblemRef} className="curtain-medallion-container">
+          <div ref={highlightGlowRef} className="emblem-gold-highlight-glow" aria-hidden="true" />
+          <button
+            ref={ctaRef}
+            type="button"
+            className="curtain-cta-plaque curtain-cta-medallion"
+            onClick={handleTapToOpen}
+            disabled={isOpening}
+            aria-label="Tap to open royal invitation and enter the sacred sanctum"
+          >
+            <CeremonialMedallion isPressed={isOpening} />
+          </button>
+        </div>
       </div>
 
       {/* 08. Ceremonial Temple Stone Floor & Diya Glow at Bottom */}

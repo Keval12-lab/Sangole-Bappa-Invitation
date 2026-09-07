@@ -11,10 +11,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: clamp(4.2rem, 8vh, 5.8rem) clamp(1rem, 3.5vw, 3rem) clamp(2.5rem, 4.5vh, 3.5rem);
+  padding: clamp(4.6rem, 8.5vh, 6rem) clamp(1rem, 3.5vw, 3rem) clamp(2.5rem, 4.5vh, 3.5rem);
   text-align: center;
   overflow: hidden;
-  background-color: var(--color-deep-shadow, #160306);
+  background-color: var(--color-deep-shadow, #180307);
   color: var(--text-primary, #F3E7C2);
   box-sizing: border-box;
 }
@@ -22,13 +22,15 @@
 /* --------------------------------------------------------------------------
    01. DEEP TEMPLE ATMOSPHERE & BACKGROUND LAYERS
    -------------------------------------------------------------------------- */
-/* Layer 1: Warm Parchment Core with Deep Burgundy/Maroon Vignette Edges */
+/* 55–65% Deep Wine/Maroon Foundation + 35–45% Warm Sandstone/Amber/Ivory Illumination */
 .hero-atmosphere-field {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(ellipse 65% 55% at 50% 38%, rgba(245, 215, 140, 0.20) 0%, rgba(185, 110, 22, 0.12) 42%, transparent 75%),
-    radial-gradient(ellipse 90% 82% at 50% 46%, #25050b 0%, #160205 55%, #080102 100%);
+    /* Zone 3 & 2: Warm sanctum light field radiating outward from upper-center */
+    radial-gradient(ellipse 75% 65% at 50% 36%, rgba(255, 238, 190, 0.28) 0%, rgba(235, 185, 105, 0.20) 28%, rgba(185, 110, 38, 0.14) 52%, rgba(95, 25, 20, 0.08) 75%, transparent 92%),
+    /* Zone 2 & 1: Burnished maroon to deep wine foundation */
+    radial-gradient(ellipse 95% 85% at 50% 42%, #380C14 0%, #2A060D 38%, #1A0307 72%, #0E0104 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -56,13 +58,13 @@
   height: auto;
 }
 
-/* Layer 3: Master Vignette & Edge Shadow Framing */
+/* Layer 3: Master Vignette & Edge Shadow Framing (Softened to avoid excessive darkness) */
 .hero-vignette-overlay {
   position: absolute;
   inset: 0;
   box-shadow: 
-    inset 0 0 clamp(60px, 10vw, 150px) rgba(8, 1, 2, 0.96),
-    inset 0 0 clamp(30px, 5vw, 70px) rgba(0, 0, 0, 0.92);
+    inset 0 0 clamp(50px, 8vw, 120px) rgba(14, 2, 4, 0.68),
+    inset 0 0 clamp(25px, 4vw, 50px) rgba(6, 0, 1, 0.55);
   pointer-events: none;
   z-index: 3;
 }
@@ -89,6 +91,37 @@
 }
 
 /* --------------------------------------------------------------------------
+   01B. TRADITIONAL INDIAN TEMPLE JHAROKHA / MANDAP HEADER
+   -------------------------------------------------------------------------- */
+.hero-top-toran-wrapper {
+  position: absolute;
+  top: clamp(6px, 1.2vh, 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(290px, 80vw, 820px);
+  z-index: 14;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: visible;
+}
+
+.hero-toran-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero-toran-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* --------------------------------------------------------------------------
    02. TOP SACRED DEVOTIONAL INVOCATION
    -------------------------------------------------------------------------- */
 .hero-sacred-invocation {
@@ -97,25 +130,28 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   margin-bottom: clamp(0.75rem, 2vh, 1.35rem);
+  padding: 0.28rem 1.15rem;
+  border-radius: 9999px;
+  background: rgba(45, 8, 15, 0.52);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
 }
 
 .invocation-text {
   font-family: var(--font-display-devanagari, 'Rozha One', serif);
   font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   font-weight: 600;
-  letter-spacing: 0.12em;
-  color: #f7e096;
-  text-shadow: 
-    0 2px 6px rgba(0, 0, 0, 0.9),
-    0 0 14px rgba(229, 189, 71, 0.5);
+  letter-spacing: 0.10em;
+  color: #F7EAD0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
 }
 
 .invocation-flourish {
-  color: #c9a227;
-  font-size: 1.15em;
-  opacity: 0.85;
+  color: #D4AF37;
+  font-size: 1.1em;
+  opacity: 0.82;
 }
 
 /* --------------------------------------------------------------------------
@@ -146,34 +182,56 @@
   margin: 0 auto;
 }
 
-/* Layer A: Warm Golden Atmospheric Halo */
+/* Soft warm inner sanctum field directly framing Bappa */
+.hero-focal-stage::before {
+  content: '';
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 236, 175, 0.18) 0%,
+    rgba(220, 155, 65, 0.10) 42%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Layer A: Warm Sandstone, Parchment & Amber Atmospheric Halo */
 .hero-sanctum-halo {
   position: absolute;
   top: 48%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  width: min(580px, 94vw);
-  height: min(580px, 94vw);
+  width: min(600px, 95vw);
+  height: min(600px, 95vw);
   border-radius: 50%;
+  /* Multi-stop warm sandstone, parchment, antique amber & ivory illumination */
   background: radial-gradient(
     circle,
-    rgba(255, 242, 195, 0.36) 0%,
-    rgba(240, 195, 75, 0.20) 32%,
-    rgba(200, 130, 25, 0.08) 56%,
-    rgba(110, 20, 25, 0.02) 74%,
-    transparent 88%
+    rgba(255, 248, 225, 0.44) 0%,
+    rgba(245, 218, 150, 0.30) 24%,
+    rgba(220, 165, 80, 0.16) 48%,
+    rgba(165, 85, 30, 0.07) 68%,
+    rgba(80, 12, 18, 0.02) 82%,
+    transparent 90%
   );
   pointer-events: none;
   z-index: 3;
-  animation: heroHaloWarmBreathe 7s ease-in-out infinite alternate;
+  animation: heroHaloWarmBreathe 7.5s ease-in-out infinite alternate;
 }
 
 @keyframes heroHaloWarmBreathe {
-  0% { transform: translate3d(-50%, -50%, 0) scale(0.96); opacity: 0.85; }
-  100% { transform: translate3d(-50%, -50%, 0) scale(1.04); opacity: 1; }
+  0% { transform: translate3d(-50%, -50%, 0) scale(0.97); opacity: 0.88; }
+  100% { transform: translate3d(-50%, -50%, 0) scale(1.03); opacity: 1; }
 }
 
-/* Layer B: Sacred Circular Vector Shloka Ring with Solar Rays & Mandala */
+/* Layer B: Sacred Circular Vector Shloka Ring with Multi-tone Antique Metal Geometry */
 .hero-shloka-ring-container {
   position: absolute;
   top: 48%;
@@ -183,13 +241,14 @@
   height: min(510px, 88vw);
   pointer-events: none;
   z-index: 4;
+  opacity: 0.32; /* Subordinate to Bappa (20–35% specification) */
 }
 
 .hero-shloka-ring-svg {
   width: 100%;
   height: 100%;
   transform-origin: center center;
-  animation: heroShlokaRotate 80s linear infinite;
+  animation: heroShlokaRotate 72s linear infinite; /* Exactly 72 seconds continuous rotation */
   will-change: transform;
 }
 
@@ -203,9 +262,8 @@
   font-size: 13.5px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  fill: var(--color-warm-ivory, #F3E7C2);
-  opacity: 0.95;
-  filter: drop-shadow(0 0 6px rgba(201, 162, 39, 0.4));
+  fill: #F5EEDB;
+  text-shadow: 0 0 6px rgba(201, 162, 39, 0.30);
 }
 
 /* Layer C: Transparent Master Ganpati Cutout (No rectangular card or box) */
@@ -217,9 +275,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* will-change applied only during entrance animation (GSAP handles this via force3D).
-     Permanent will-change for the ambient breathe would hold a compositor layer indefinitely,
-     consuming GPU memory. The breathe animation uses transform only, so browser auto-promotes as needed. */
   animation: heroBappaCalmBreathe 7.5s ease-in-out infinite alternate;
 }
 
@@ -238,10 +293,10 @@
   object-fit: contain;
   display: block;
   
-  /* Natural physical lighting separation (No hard border, no matte) */
+  /* Natural physical lighting separation preserving exact original artwork colors */
   filter: 
-    drop-shadow(0 18px 36px rgba(0, 0, 0, 0.92))
-    drop-shadow(0 0 26px rgba(229, 189, 71, 0.20));
+    drop-shadow(0 16px 32px rgba(0, 0, 0, 0.90))
+    drop-shadow(0 0 24px rgba(229, 189, 71, 0.18));
 }
 
 /* Grounding Base Shadow beneath the Carved Pedestal */
@@ -290,48 +345,48 @@
   font-family: var(--font-display-devanagari, 'Rozha One', 'Yatra One', serif);
   font-size: clamp(3.2rem, 10.5vw, 5.2rem);
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   display: inline-block;
+  white-space: nowrap;
 
-  /* Rich Multi-stop Embossed Antique Gold to Ivory Gradient */
+  /* Warm Gold to Champagne Gold Tonal Treatment (Restrained Temple Illumination) */
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    #fff7d6 15%,
-    #f5d77f 35%,
-    #e5bd47 55%,
-    #a8791c 78%,
-    #694305 100%
+    #FFFFFF 0%,
+    #FFF8E0 14%,
+    #EBD388 34%,
+    #D8B04C 56%,
+    #A87D25 78%,
+    #6D4B0D 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
-  /* Sculptural Dimensional Shadow & Sacred Gold Backlight */
+  /* Sculptural Dimensional Temple Relief Shadow without Neon Bloom */
   filter: 
-    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.95))
-    drop-shadow(0 0 25px rgba(212, 175, 55, 0.45));
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.90))
+    drop-shadow(0 0 14px rgba(212, 175, 55, 0.28));
 }
 
 /* Subtitle: "तो येतोय... एका नविन स्वरूपात" */
 .hero-devotional-subtitle {
   font-family: var(--font-display-devanagari, 'Rozha One', serif);
-  font-size: clamp(1.05rem, 3.2vw, 1.4rem);
+  font-size: clamp(1.05rem, 3.2vw, 1.35rem);
   font-weight: 500;
-  color: #f7d57f;
-  letter-spacing: 0.08em;
+  color: #F7EEDB;
+  letter-spacing: 0.06em;
   margin-bottom: clamp(0.6rem, 1.5vh, 1.1rem);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  text-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.9),
-    0 0 16px rgba(212, 175, 55, 0.45);
+  white-space: nowrap;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.90);
 }
 
 .subtitle-flourish {
-  color: #e5bd47;
+  color: #D4AF37;
   font-size: 1.1em;
-  opacity: 0.85;
+  opacity: 0.82;
 }
 
 /* Supporting Devotional Copy & Gold Linework Divider */
@@ -362,7 +417,7 @@
 .ornament-symbol {
   color: #e5bd47;
   font-size: 0.85rem;
-  filter: drop-shadow(0 0 8px rgba(229, 189, 71, 0.8));
+  filter: drop-shadow(0 0 6px rgba(229, 189, 71, 0.6));
 }
 
 .hero-invitation-tagline {
@@ -371,7 +426,7 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   line-height: 1.65;
-  color: #f7eed8;
+  color: #E6D8C0;
   text-transform: uppercase;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
   margin: 0;
@@ -477,19 +532,19 @@
     height: 560px;
   }
 
-  /* Asymmetrical 2-Column Editorial Grid */
+  /* Asymmetrical 2-Column Editorial Grid: Balanced Bappa Sanctum & Typography */
   .hero-editorial-grid {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1fr 1.15fr;
     align-items: center;
-    column-gap: clamp(2rem, 4vw, 4.5rem);
+    column-gap: clamp(2.5rem, 4vw, 4.5rem);
     text-align: left;
     height: auto;
     max-height: 780px;
   }
 
   .hero-focal-stage {
-    max-width: 530px;
+    max-width: 510px;
     margin: 0;
   }
 
@@ -499,7 +554,7 @@
 
   .hero-typography-stack {
     align-items: flex-start;
-    max-width: 560px;
+    max-width: 640px;
   }
 
   .hero-master-title-wrapper {
@@ -508,16 +563,18 @@
   }
 
   .title-word {
-    font-size: clamp(4.2rem, 5.5vw, 5.8rem);
+    font-size: clamp(3.5rem, 4.6vw, 4.9rem);
+    white-space: nowrap;
   }
 
   .hero-devotional-subtitle {
     margin-bottom: 1.25rem;
+    white-space: nowrap;
   }
 
   .hero-supporting-group {
     align-items: flex-start;
-    max-width: 480px;
+    max-width: 490px;
   }
 
   .hero-gold-ornament-divider {
@@ -537,19 +594,25 @@
 @media (min-width: 1440px) {
   .hero-editorial-grid {
     max-width: 1320px;
-    column-gap: 5.5rem;
+    column-gap: 5rem;
+    grid-template-columns: 1fr 1.15fr;
   }
 
   .hero-focal-stage {
-    max-width: 590px;
+    max-width: 570px;
   }
 
   .hero-transparent-idol-image {
     max-height: 640px;
   }
 
+  .hero-typography-stack {
+    max-width: 720px;
+  }
+
   .title-word {
-    font-size: 6.2rem;
+    font-size: clamp(4.4rem, 4.8vw, 5.5rem);
+    white-space: nowrap;
   }
 }
 
@@ -571,4 +634,44 @@
     font-size: 2.7rem;
   }
 }
+
+/* MOBILE VIEWPORTS (< 768px) — SURGICAL CENTER BELL CLEARANCE & VISUAL ISOLATION */
+@media (max-width: 767px) {
+  .section-hero {
+    /* Provide clean breathing space between top center bell and invocation */
+    padding-top: clamp(5.4rem, 10.2vh, 6.4rem);
+  }
+
+  /* Eliminate decorative rosette overlapping the center bell mounting area */
+  .hero-toran-center-rosette {
+    display: none !important;
+  }
+
+  /* Prevent center floating petal from drifting directly into the center bell */
+  .hero-ambient-petals-layer .hero-depth-petal:nth-child(5) {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   08. ACCESSIBILITY — PREFERS REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-shloka-ring-svg,
+  .hero-transparent-idol-wrapper,
+  .hero-sanctum-halo,
+  .hero-depth-petal {
+    animation: none !important;
+  }
+
+  .hero-sanctum-halo {
+    opacity: 1 !important;
+    transform: translate3d(-50%, -50%, 0) scale(1) !important;
+  }
+
+  .hero-transparent-idol-wrapper {
+    transform: translateY(0) scale(1) !important;
+  }
+}
+
 

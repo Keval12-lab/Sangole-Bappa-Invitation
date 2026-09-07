@@ -1,12 +1,14 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { EVENT_DETAILS } from '@/utils/constants';
+import { HeroToran } from '@/components/hero/HeroToran';
 import './hero.css';
 
 export const HeroSection: React.FC = () => {
   const heroRootRef = useRef<HTMLDivElement | null>(null);
   const bgAtmosphereRef = useRef<HTMLDivElement | null>(null);
   const templeSilhouetteRef = useRef<HTMLDivElement | null>(null);
+  const toranRef = useRef<HTMLDivElement | null>(null);
   const sanctumHaloRef = useRef<HTMLDivElement | null>(null);
   const shlokaRingRef = useRef<HTMLDivElement | null>(null);
   const invocationRef = useRef<HTMLDivElement | null>(null);
@@ -57,6 +59,14 @@ export const HeroSection: React.FC = () => {
         { scale: 0.82, opacity: 0 },
         { scale: 1, opacity: 0.9, duration: 1.1, ease: 'power2.out' },
         0.15
+      );
+
+      // 0.20: Traditional Indian temple jharokha / mandap header gently settles at the top of Hero
+      tl.fromTo(
+        toranRef.current,
+        { y: -16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out' },
+        0.20
       );
 
       // 0.30: Sacred Shloka Ring softly fades in behind Ganpati
@@ -123,15 +133,15 @@ export const HeroSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  // Natural scattered temple petals (Rose & Marigold)
+  // Natural scattered temple petals (Rose & Marigold) framing perimeter
   const petals = [
-    { left: '8%', top: '22%', size: 15, color: '#D90429', dur: '8.5s', delay: '0s', depth: 'front' },
-    { left: '88%', top: '18%', size: 14, color: '#FF7700', dur: '9.2s', delay: '1.4s', depth: 'front' },
-    { left: '16%', top: '68%', size: 12, color: '#FFB703', dur: '7.8s', delay: '2.5s', depth: 'back' },
-    { left: '82%', top: '70%', size: 15, color: '#C1121F', dur: '9.8s', delay: '0.9s', depth: 'front' },
-    { left: '48%', top: '12%', size: 11, color: '#FFD700', dur: '9.0s', delay: '3.2s', depth: 'back' },
-    { left: '6%', top: '84%', size: 13, color: '#FF7700', dur: '8.0s', delay: '1.9s', depth: 'back' },
-    { left: '92%', top: '82%', size: 14, color: '#C1121F', dur: '8.8s', delay: '2.4s', depth: 'front' },
+    { left: '7%', top: '24%', size: 14, color: '#D90429', dur: '8.5s', delay: '0s', depth: 'front' },
+    { left: '91%', top: '20%', size: 13, color: '#FF7700', dur: '9.2s', delay: '1.4s', depth: 'front' },
+    { left: '12%', top: '72%', size: 12, color: '#FFB703', dur: '7.8s', delay: '2.5s', depth: 'back' },
+    { left: '88%', top: '74%', size: 14, color: '#C1121F', dur: '9.8s', delay: '0.9s', depth: 'front' },
+    { left: '18%', top: '14%', size: 10, color: '#FFD700', dur: '9.0s', delay: '3.2s', depth: 'back' },
+    { left: '6%', top: '86%', size: 13, color: '#FF7700', dur: '8.0s', delay: '1.9s', depth: 'back' },
+    { left: '93%', top: '84%', size: 13, color: '#C1121F', dur: '8.8s', delay: '2.4s', depth: 'front' },
   ];
 
   return (
@@ -176,6 +186,11 @@ export const HeroSection: React.FC = () => {
         </svg>
       </div>
 
+      {/* 02B. Traditional Indian Temple Jharokha / Mandap Header Frame */}
+      <div ref={toranRef} className="hero-top-toran-wrapper" aria-hidden="true">
+        <HeroToran />
+      </div>
+
       {/* 03. Top Sacred Devotional Invocation */}
       <div ref={invocationRef} className="hero-sacred-invocation">
         <span className="invocation-flourish">꧁</span>
@@ -190,7 +205,7 @@ export const HeroSection: React.FC = () => {
           {/* Layer A: Warm Golden Atmospheric Halo */}
           <div ref={sanctumHaloRef} className="hero-sanctum-halo" aria-hidden="true" />
 
-          {/* Layer B: Sacred Circular Vector Shloka Ring with Solar Rays & Mandala */}
+          {/* Layer B: Sacred Circular Vector Shloka Ring with Multi-tone Antique Metal Geometry */}
           <div ref={shlokaRingRef} className="hero-shloka-ring-container" aria-hidden="true">
             <svg viewBox="0 0 520 520" fill="none" className="hero-shloka-ring-svg">
               <defs>
@@ -204,17 +219,37 @@ export const HeroSection: React.FC = () => {
                   id="shlokaInnerCirclePath"
                   d="M 260, 260 m -162, 0 a 162,162 0 1,1 324,0 a 162,162 0 1,1 -324,0"
                 />
+
+                {/* Multi-tone Antique Metal Gradients */}
+                <linearGradient id="shlokaAntiqueGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FFF2B8" />
+                  <stop offset="30%" stopColor="#E5C158" />
+                  <stop offset="65%" stopColor="#B88A22" />
+                  <stop offset="100%" stopColor="#6E4C0D" />
+                </linearGradient>
+
+                <linearGradient id="shlokaWarmBronze" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#D99E4D" />
+                  <stop offset="50%" stopColor="#9C6420" />
+                  <stop offset="100%" stopColor="#4E2A08" />
+                </linearGradient>
+
+                <radialGradient id="shlokaChampagneGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#FFF9E6" stopOpacity="0.8" />
+                  <stop offset="60%" stopColor="#E8C776" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#9A6F1C" stopOpacity="0.1" />
+                </radialGradient>
               </defs>
 
-              {/* Concentric Celestial Mandala Geometry */}
-              <circle cx="260" cy="260" r="236" stroke="#C9A227" strokeWidth="1" strokeDasharray="4 6" opacity="0.3" />
-              <circle cx="260" cy="260" r="222" stroke="#E5BD47" strokeWidth="1.2" opacity="0.45" />
-              <circle cx="260" cy="260" r="204" stroke="#C9A227" strokeWidth="1.5" opacity="0.4" />
-              <circle cx="260" cy="260" r="180" stroke="#FFD700" strokeWidth="1" strokeDasharray="3 4" opacity="0.35" />
-              <circle cx="260" cy="260" r="150" stroke="#C9A227" strokeWidth="1" opacity="0.25" />
+              {/* Concentric Celestial Mandala Geometry with Antique Metal Tones */}
+              <circle cx="260" cy="260" r="236" stroke="url(#shlokaWarmBronze)" strokeWidth="1" strokeDasharray="4 6" opacity="0.4" />
+              <circle cx="260" cy="260" r="222" stroke="url(#shlokaAntiqueGold)" strokeWidth="1.2" opacity="0.55" />
+              <circle cx="260" cy="260" r="204" stroke="url(#shlokaAntiqueGold)" strokeWidth="1.5" opacity="0.5" />
+              <circle cx="260" cy="260" r="180" stroke="url(#shlokaWarmBronze)" strokeWidth="1" strokeDasharray="3 4" opacity="0.4" />
+              <circle cx="260" cy="260" r="150" stroke="url(#shlokaAntiqueGold)" strokeWidth="1" opacity="0.3" />
 
               {/* Surya-Mandal Radiating Golden Solar Rays (16 Points) */}
-              <g stroke="#E5BD47" strokeWidth="1.2" opacity="0.35">
+              <g stroke="url(#shlokaAntiqueGold)" strokeWidth="1.2" opacity="0.4">
                 <line x1="260" y1="24" x2="260" y2="44" />
                 <line x1="260" y1="476" x2="260" y2="496" />
                 <line x1="24" y1="260" x2="44" y2="260" />

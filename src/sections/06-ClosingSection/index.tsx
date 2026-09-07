@@ -1,6 +1,8 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { EVENT_DETAILS } from '@/utils/constants';
+import { SanctumDiyas } from '@/components/closing/SanctumDiyas';
+import { SanctumPetals } from '@/components/closing/SanctumPetals';
 import './closing.css';
 
 export const ClosingSection: React.FC = () => {
@@ -9,11 +11,12 @@ export const ClosingSection: React.FC = () => {
   const sanctumGlowRef = useRef<HTMLDivElement | null>(null);
   const sacredRingRef = useRef<HTMLDivElement | null>(null);
   const bappaRef = useRef<HTMLDivElement | null>(null);
-  const topDividerRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const subtitleRef = useRef<HTMLParagraphElement | null>(null);
-  const bottomDividerRef = useRef<HTMLDivElement | null>(null);
+  const diyasRef = useRef<HTMLDivElement | null>(null);
+  const petalsRef = useRef<HTMLDivElement | null>(null);
   const creditRef = useRef<HTMLDivElement | null>(null);
+  const sealRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,7 +31,7 @@ export const ClosingSection: React.FC = () => {
             ctx = gsap.context(() => {
               const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
-              // 1. Atmosphere fades in
+              // 0.00: Dark sanctum atmosphere fades in
               tl.fromTo(
                 atmosphereRef.current,
                 { opacity: 0 },
@@ -36,68 +39,76 @@ export const ClosingSection: React.FC = () => {
                 0
               );
 
-              // 2. Sacred mandala ring reveals
-              tl.fromTo(
-                sacredRingRef.current,
-                { opacity: 0, scale: 0.92, rotation: -6 },
-                { opacity: 0.35, scale: 1, rotation: 0, duration: 1.1, ease: 'power2.out' },
-                0.1
-              );
-
-              // 3. Subtle sanctum glow appears
+              // 0.20: Warm sanctum light begins
               tl.fromTo(
                 sanctumGlowRef.current,
-                { opacity: 0, scale: 0.8 },
-                { opacity: 1, scale: 1, duration: 1.0, ease: 'sine.out' },
-                0.25
+                { opacity: 0, scale: 0.82 },
+                { opacity: 1, scale: 1, duration: 1.15, ease: 'sine.out' },
+                0.20
               );
 
-              // 4. Subtle Bappa idol presence reveals
+              // 0.45: Sacred mandala ring reveal
+              tl.fromTo(
+                sacredRingRef.current,
+                { opacity: 0, scale: 0.92, rotation: -4 },
+                { opacity: 0.38, scale: 1, rotation: 0, duration: 1.1, ease: 'power2.out' },
+                0.45
+              );
+
+              // 0.70: Bappa darshan reveal
               tl.fromTo(
                 bappaRef.current,
-                { opacity: 0, scale: 0.94, y: 10 },
-                { opacity: 0.9, scale: 1, y: 0, duration: 1.1, ease: 'power2.out' },
-                0.4
+                { opacity: 0, scale: 0.94, y: 12 },
+                { opacity: 0.96, scale: 1, y: 0, duration: 1.1, ease: 'power2.out' },
+                0.70
               );
 
-              // 5. Top ornamental divider settles
-              tl.fromTo(
-                topDividerRef.current,
-                { opacity: 0, scaleX: 0.7 },
-                { opacity: 0.7, scaleX: 1, duration: 0.7 },
-                0.65
-              );
-
-              // 6. Final title "आगमन सोहळा" reveals
+              // 1.00: Primary title reveal ("आगमन सोहळा")
               tl.fromTo(
                 titleRef.current,
                 { opacity: 0, y: 14 },
                 { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out' },
-                0.8
+                1.00
               );
 
-              // 7. Subtitle "तो येतोय... एका नविन स्वरूपात" reveals
+              // 1.25: Subtitle reveal ("तो येतोय... एका नविन स्वरूपात")
               tl.fromTo(
                 subtitleRef.current,
                 { opacity: 0, y: 10 },
-                { opacity: 0.92, y: 0, duration: 0.75 },
-                1.05
-              );
-
-              // 8. Bottom sacred ornament settles
-              tl.fromTo(
-                bottomDividerRef.current,
-                { opacity: 0, y: 8 },
-                { opacity: 0.65, y: 0, duration: 0.6 },
+                { opacity: 0.92, y: 0, duration: 0.75, ease: 'power2.out' },
                 1.25
               );
 
-              // 9. Final creator credit appears last
+              // 1.50: Diyas illuminate on sanctum floor
+              tl.fromTo(
+                diyasRef.current,
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+                1.50
+              );
+
+              // 1.75: Subtle petals settle into place
+              tl.fromTo(
+                petalsRef.current,
+                { opacity: 0, y: -10 },
+                { opacity: 0.85, y: 0, duration: 0.9, ease: 'power1.out' },
+                1.75
+              );
+
+              // 2.10: Created by Keval Rathod appears
               tl.fromTo(
                 creditRef.current,
-                { opacity: 0 },
-                { opacity: 0.7, duration: 0.9 },
-                1.5
+                { opacity: 0, y: 6 },
+                { opacity: 0.72, y: 0, duration: 0.75, ease: 'power2.out' },
+                2.10
+              );
+
+              // 2.40: Final ornamental seal settles
+              tl.fromTo(
+                sealRef.current,
+                { opacity: 0, scale: 0.85 },
+                { opacity: 0.65, scale: 1, duration: 0.6, ease: 'power2.out' },
+                2.40
               );
             }, sectionRef);
 
@@ -117,12 +128,19 @@ export const ClosingSection: React.FC = () => {
 
   return (
     <footer ref={sectionRef} className="section-closing" aria-label="Closing Blessing and Darshan">
-      {/* 01. Background Atmosphere & Warm Sanctum Glow */}
+      {/* 01. Background Atmosphere & Warm Sanctum Illumination */}
       <div ref={atmosphereRef} className="closing-atmosphere" aria-hidden="true">
         <div ref={sanctumGlowRef} className="closing-sanctum-glow" />
+        <div className="closing-upper-atmosphere" />
+        <div className="closing-floor-ambience" />
       </div>
 
-      {/* 02. Restrained Circular Antique-Gold Temple Mandala Ring */}
+      {/* 02. Subtle Outer Sanctum Petals (4-6 discrete elements on periphery) */}
+      <div ref={petalsRef} className="closing-petals-wrapper" aria-hidden="true">
+        <SanctumPetals />
+      </div>
+
+      {/* 03. Existing Sacred Antique-Gold Temple Mandala Ring */}
       <div ref={sacredRingRef} className="closing-sacred-ring-wrapper" aria-hidden="true">
         <svg viewBox="0 0 400 400" className="closing-sacred-ring-svg" fill="none">
           {/* Concentric Geometric Temple Borders */}
@@ -153,9 +171,9 @@ export const ClosingSection: React.FC = () => {
         </svg>
       </div>
 
-      {/* 03. Central Sacred Darshan Composition */}
+      {/* 04. Central Sacred Darshan Composition */}
       <div className="closing-content-container">
-        {/* Subtle, Balanced Bappa Presence */}
+        {/* Authentic Bappa Idol Presence */}
         <div ref={bappaRef} className="closing-bappa-wrapper">
           <img
             src={EVENT_DETAILS.assets.ganpatiHero}
@@ -165,14 +183,7 @@ export const ClosingSection: React.FC = () => {
           />
         </div>
 
-        {/* Top Ornamental Divider */}
-        <div ref={topDividerRef} className="closing-ornament-divider" aria-hidden="true">
-          <span className="divider-line left" />
-          <span className="divider-symbol">❖</span>
-          <span className="divider-line right" />
-        </div>
-
-        {/* Primary Ceremonial Marathi Title */}
+        {/* Primary Ceremonial Title */}
         <h2 ref={titleRef} className="closing-title font-devanagari text-gold-gradient">
           आगमन सोहळा
         </h2>
@@ -181,16 +192,33 @@ export const ClosingSection: React.FC = () => {
         <p ref={subtitleRef} className="closing-subtitle font-devanagari">
           तो येतोय... एका नविन स्वरूपात
         </p>
-
-        {/* Bottom Sacred Temple Clot / Mantra */}
-        <div ref={bottomDividerRef} className="closing-bottom-ornament" aria-hidden="true">
-          <span className="sacred-mantra-text">॥ श्री गणेशाय नमः ॥</span>
-        </div>
       </div>
 
-      {/* 04. Final Elegant Creator Credit Signature */}
+      {/* 05. Lower Temple Sanctum Floor with Exactly 3 Brass Diyas */}
+      <div ref={diyasRef} className="closing-sanctum-altar-area">
+        <SanctumDiyas />
+      </div>
+
+      {/* 06. Final Elegant Creator Credit Signature */}
       <div ref={creditRef} className="closing-creator-credit">
-        <span>Created by Keval Rathod</span>
+        <span>Created By Keval Rathod</span>
+      </div>
+
+      {/* 07. Tiny Ceremonial Concluding Seal */}
+      <div ref={sealRef} className="closing-concluding-seal" aria-hidden="true">
+        <svg viewBox="0 0 64 14" fill="none" className="closing-seal-svg">
+          {/* Subtle Wing Lines */}
+          <line x1="2" y1="7" x2="22" y2="7" stroke="#C9A227" strokeWidth="0.8" strokeOpacity="0.4" />
+          <line x1="42" y1="7" x2="62" y2="7" stroke="#C9A227" strokeWidth="0.8" strokeOpacity="0.4" />
+
+          {/* Flanking Beads */}
+          <circle cx="25" cy="7" r="1.2" fill="#E5BD47" fillOpacity="0.7" />
+          <circle cx="39" cy="7" r="1.2" fill="#E5BD47" fillOpacity="0.7" />
+
+          {/* Central Sacred Diamond */}
+          <path d="M 32 2 L 36 7 L 32 12 L 28 7 Z" fill="#C9A227" fillOpacity="0.85" />
+          <circle cx="32" cy="7" r="1.2" fill="#FFFCE6" />
+        </svg>
       </div>
     </footer>
   );

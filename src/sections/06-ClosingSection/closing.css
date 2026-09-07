@@ -1,12 +1,12 @@
 /* ==========================================================================
-   SECTION 06: CLOSING / FINAL DARSHAN MOMENT
+   SECTION 06: ANTIM DARSHAN / AARTI SANCTUM CLOSING
    ========================================================================== */
 
 .section-closing {
   position: relative;
   width: 100%;
-  min-height: clamp(520px, 85vh, 760px);
-  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(2rem, 4vw, 3rem);
+  min-height: clamp(540px, 88vh, 780px);
+  padding: clamp(3.2rem, 5.5vw, 5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(2rem, 3.5vw, 2.8rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,11 +14,11 @@
   text-align: center;
   box-sizing: border-box;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 38%, rgba(68, 12, 22, 0.48) 0%, rgba(22, 3, 6, 0.98) 75%);
+  background: radial-gradient(circle at 50% 34%, rgba(58, 9, 18, 0.72) 0%, rgba(20, 2, 6, 0.96) 62%, #0A0103 100%);
   z-index: 10;
 }
 
-/* 01. Atmosphere & Soft Warm Sanctum Glow */
+/* 01. Background Atmosphere & Temple Sanctum Illumination */
 .closing-atmosphere {
   position: absolute;
   inset: 0;
@@ -28,50 +28,171 @@
   contain: layout;
 }
 
+/* Soft Warm Sanctum Radial Illumination Behind Bappa */
 .closing-sanctum-glow {
   position: absolute;
-  top: 38%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(260px, 50vw, 480px);
-  height: clamp(260px, 50vw, 480px);
-  background: radial-gradient(circle, rgba(216, 134, 27, 0.16) 0%, rgba(201, 162, 39, 0.08) 45%, transparent 72%);
+  width: clamp(280px, 52vw, 520px);
+  height: clamp(280px, 52vw, 520px);
+  background: radial-gradient(circle, rgba(224, 138, 28, 0.19) 0%, rgba(201, 162, 39, 0.09) 45%, rgba(138, 28, 48, 0.04) 62%, transparent 74%);
   border-radius: 50%;
-  /* Reduced blur from 28px to 16px: same visual softness, ~40% less rasterization cost on mobile.
-     The glow is large enough that a smaller blur value is imperceptible to the human eye. */
-  filter: blur(16px);
+  filter: blur(18px);
   pointer-events: none;
   will-change: transform, opacity;
 }
 
+/* Faint Upper Temple Archway Vignette */
+.closing-upper-atmosphere {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(8, 1, 2, 0.75) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Warm Floor Reflection Ambience from Diyas */
+.closing-floor-ambience {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(216, 120, 20, 0.11) 0%, rgba(138, 28, 48, 0.05) 50%, transparent 80%);
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .closing-sanctum-glow {
-    animation: closingGlowBreathe 8.5s ease-in-out infinite alternate;
+    animation: sanctumGlowBreathe 8.5s ease-in-out infinite alternate;
   }
 }
 
-@keyframes closingGlowBreathe {
+@keyframes sanctumGlowBreathe {
   0% {
-    transform: translate(-50%, -50%) scale(0.95);
-    opacity: 0.65;
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0.75;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.06);
-    opacity: 0.92;
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.98;
   }
 }
 
-/* 02. Restrained Antique-Gold Temple Mandala Ring */
-.closing-sacred-ring-wrapper {
+/* 02. Outer Sanctum Petals Layer (4–6 Discrete Elements on Periphery) */
+.closing-petals-wrapper {
   position: absolute;
-  top: 38%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(280px, 46vw, 420px);
-  height: clamp(280px, 46vw, 420px);
+  inset: 0;
   pointer-events: none;
   z-index: 2;
-  opacity: 0.35;
+  overflow: hidden;
+}
+
+.sanctum-petals-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sanctum-petal {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.65;
+  will-change: transform;
+}
+
+.petal-pos-1 {
+  top: 16%;
+  left: clamp(4%, 8vw, 14%);
+  width: clamp(14px, 2.2vw, 18px);
+  transform: rotate(-22deg);
+}
+
+.petal-pos-2 {
+  top: 20%;
+  right: clamp(4%, 8vw, 14%);
+  width: clamp(15px, 2.4vw, 20px);
+  transform: rotate(26deg);
+}
+
+.petal-pos-3 {
+  top: 48%;
+  left: clamp(3%, 6vw, 10%);
+  width: clamp(13px, 2vw, 16px);
+  transform: rotate(38deg);
+}
+
+.petal-pos-4 {
+  top: 54%;
+  right: clamp(3%, 6vw, 10%);
+  width: clamp(14px, 2.2vw, 18px);
+  transform: rotate(-32deg);
+}
+
+.petal-pos-5 {
+  bottom: 24%;
+  left: clamp(8%, 12vw, 18%);
+  width: clamp(12px, 1.8vw, 15px);
+  transform: rotate(14deg);
+}
+
+.petal-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .petal-pos-1 {
+    animation: petalFloatA 7s ease-in-out infinite alternate;
+  }
+  .petal-pos-2 {
+    animation: petalFloatB 8s ease-in-out infinite alternate 1s;
+  }
+  .petal-pos-3 {
+    animation: petalFloatA 9s ease-in-out infinite alternate 2s;
+  }
+  .petal-pos-4 {
+    animation: petalFloatB 7.5s ease-in-out infinite alternate 0.5s;
+  }
+  .petal-pos-5 {
+    animation: petalFloatA 8.5s ease-in-out infinite alternate 1.5s;
+  }
+}
+
+@keyframes petalFloatA {
+  0% {
+    transform: translateY(0) rotate(-22deg);
+  }
+  100% {
+    transform: translateY(-7px) rotate(-16deg);
+  }
+}
+
+@keyframes petalFloatB {
+  0% {
+    transform: translateY(0) rotate(26deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(32deg);
+  }
+}
+
+/* 03. Existing Sacred Antique-Gold Temple Mandala Ring */
+.closing-sacred-ring-wrapper {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(290px, 46vw, 440px);
+  height: clamp(290px, 46vw, 440px);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.38;
 }
 
 .closing-sacred-ring-svg {
@@ -80,7 +201,7 @@
   display: block;
 }
 
-/* 03. Central Sacred Darshan Composition */
+/* 04. Central Sacred Darshan Composition */
 .closing-content-container {
   position: relative;
   z-index: 3;
@@ -90,15 +211,15 @@
   justify-content: center;
   max-width: 680px;
   width: 100%;
-  margin: auto 0;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* Subtle, Balanced Bappa Presence */
+/* Authentic Bappa Idol Presence */
 .closing-bappa-wrapper {
-  width: clamp(120px, 20vw, 175px);
-  max-height: 240px;
-  margin: 0 auto 1.2rem;
+  width: clamp(140px, 24vw, 205px);
+  max-height: 260px;
+  margin: 0 auto 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,42 +230,20 @@
   height: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 22px rgba(216, 134, 27, 0.22));
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 26px rgba(224, 138, 28, 0.24));
   pointer-events: none;
   user-select: none;
 }
 
-/* Top Ornamental Divider */
-.closing-ornament-divider {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 220px;
-  margin-bottom: 0.5rem;
-  opacity: 0.7;
-}
-
-.divider-line {
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, transparent, var(--color-antique-gold, #C9A227), transparent);
-}
-
-.divider-symbol {
-  font-size: 0.75rem;
-  color: var(--color-antique-gold, #C9A227);
-}
-
-/* Primary Ceremonial Title */
+/* Primary Ceremonial Marathi Title */
 .closing-title {
   font-family: var(--font-display-devanagari, 'Rozha One', serif);
-  font-size: clamp(2.4rem, 6.2vw, 3.8rem);
+  font-size: clamp(2.3rem, 6vw, 3.6rem);
   font-weight: 700;
   line-height: 1.15;
-  margin: 0.15rem 0 0.45rem;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+  margin: 0.2rem 0 0.5rem;
+  letter-spacing: 0.02em;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.92));
 }
 
 /* Supporting Line */
@@ -156,72 +255,260 @@
   margin: 0;
   line-height: 1.5;
   opacity: 0.92;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
 
-/* Bottom Sacred Temple Ornament */
-.closing-bottom-ornament {
-  margin-top: 1.25rem;
-  display: inline-flex;
+/* 05. Lower Temple Sanctum Altar Floor with 3 Antique Brass Diyas */
+.closing-sanctum-altar-area {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 520px;
+  margin: 1.35rem auto 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.sacred-mantra-text {
-  font-family: var(--font-display-devanagari, 'Rozha One', serif);
-  font-size: clamp(0.85rem, 1.8vw, 0.96rem);
-  color: var(--color-antique-gold, #C9A227);
-  letter-spacing: 0.12em;
-  opacity: 0.75;
-  text-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+.sanctum-diyas-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 04. Final Elegant Creator Credit Signature */
+/* Floor Line */
+.sanctum-floor-line-wrapper {
+  width: 100%;
+  max-width: clamp(260px, 60vw, 440px);
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+}
+
+.sanctum-floor-line-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Floor Glow Pool */
+.sanctum-floor-glow-pool {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(180px, 45vw, 320px);
+  height: 38px;
+  background: radial-gradient(ellipse, rgba(255, 140, 20, 0.14) 0%, rgba(201, 162, 39, 0.06) 55%, transparent 75%);
+  border-radius: 50%;
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+/* 3 Diyas Trio Layout */
+.sanctum-diyas-trio {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(28px, 6.5vw, 56px);
+  margin-top: -12px; /* Sits naturally upon the carved floor line */
+  z-index: 2;
+}
+
+.sanctum-diya {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.diya-left,
+.diya-right {
+  width: clamp(28px, 5vw, 34px);
+  transform: scale(0.92);
+}
+
+.diya-center {
+  width: clamp(32px, 5.8vw, 38px);
+  transform: scale(1.05);
+  margin-bottom: 2px;
+}
+
+.diya-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.7));
+}
+
+/* Diya Flame Animations */
+.diya-flame {
+  transform-origin: 50% 90%;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flame-anim-left {
+    animation: flameFlickerLeft 2.4s ease-in-out infinite alternate;
+  }
+
+  .flame-anim-center {
+    animation: flameFlickerCenter 2.1s ease-in-out infinite alternate;
+  }
+
+  .flame-anim-right {
+    animation: flameFlickerRight 2.7s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes flameFlickerCenter {
+  0% {
+    transform: scaleY(0.97) scaleX(1.02);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scaleY(1.04) scaleX(0.98);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.95) scaleX(1.01);
+    opacity: 0.94;
+  }
+}
+
+@keyframes flameFlickerLeft {
+  0% {
+    transform: scaleY(1.03) scaleX(0.97) rotate(-1.5deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scaleY(0.96) scaleX(1.02) rotate(1deg);
+    opacity: 0.90;
+  }
+  100% {
+    transform: scaleY(1.02) scaleX(0.98) rotate(-0.5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flameFlickerRight {
+  0% {
+    transform: scaleY(0.96) scaleX(1.01) rotate(1.5deg);
+    opacity: 0.91;
+  }
+  50% {
+    transform: scaleY(1.03) scaleX(0.98) rotate(-1deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.98) scaleX(1.02) rotate(0.8deg);
+    opacity: 0.93;
+  }
+}
+
+/* 06. Final Elegant Creator Credit Signature */
 .closing-creator-credit {
   position: relative;
   z-index: 3;
-  padding-top: clamp(1.5rem, 3vh, 2.25rem);
-  padding-bottom: clamp(0.75rem, 2vh, 1.25rem);
-  margin-top: auto;
+  margin-top: clamp(1.4rem, 2.8vh, 2.2rem);
   text-align: center;
   font-family: var(--font-display-latin, 'Cinzel', serif);
   font-size: clamp(12px, 1.3vw, 14px);
   font-weight: 500;
   letter-spacing: 0.14em;
   color: var(--color-warm-ivory, #F3E7C2);
-  opacity: 0.7;
+  opacity: 0.72;
   transition: opacity 0.3s ease, color 0.3s ease;
   user-select: none;
 }
 
 .closing-creator-credit:hover {
-  opacity: 0.95;
+  opacity: 0.96;
   color: var(--color-antique-gold, #C9A227);
 }
 
-/* 05. Responsive Mobile Accommodations */
+/* 07. Tiny Ceremonial Concluding Seal */
+.closing-concluding-seal {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 64px;
+  margin: 0.45rem auto 0;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.closing-seal-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Mobile Breakpoints (390px - 430px) */
 @media (max-width: 480px) {
   .section-closing {
-    min-height: clamp(480px, 80vh, 640px);
-    padding: 3rem 1rem 2rem;
+    min-height: clamp(520px, 86vh, 680px);
+    padding: 2.8rem 1rem 1.8rem;
   }
 
   .closing-bappa-wrapper {
+    width: clamp(130px, 34vw, 165px);
     margin-bottom: 0.85rem;
   }
 
   .closing-title {
-    font-size: clamp(2.2rem, 9vw, 2.9rem);
+    font-size: clamp(2.2rem, 9.2vw, 2.85rem);
+    margin-bottom: 0.35rem;
   }
 
   .closing-subtitle {
     font-size: clamp(0.92rem, 4vw, 1.05rem);
   }
 
+  .closing-sanctum-altar-area {
+    margin-top: 1.1rem;
+  }
+
+  .sanctum-diyas-trio {
+    gap: 30px;
+    margin-top: -10px;
+  }
+
   .closing-creator-credit {
-    font-size: clamp(11px, 3vw, 13px);
-    letter-spacing: 0.13em;
-    opacity: 0.7;
-    padding-top: 1.25rem;
-    padding-bottom: 0.5rem;
+    font-size: clamp(11px, 3.2vw, 13px);
+    letter-spacing: 0.12em;
+    margin-top: 1.15rem;
+  }
+
+  .closing-concluding-seal {
+    max-width: 54px;
+    margin-top: 0.35rem;
+  }
+}
+
+/* Tablet / Mid Screens */
+@media (min-width: 481px) and (max-width: 820px) {
+  .section-closing {
+    min-height: clamp(540px, 85vh, 720px);
+    padding: 3.5rem 1.5rem 2.2rem;
+  }
+
+  .closing-bappa-wrapper {
+    width: clamp(150px, 22vw, 185px);
   }
 }
