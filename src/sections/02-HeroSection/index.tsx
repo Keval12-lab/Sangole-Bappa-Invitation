@@ -4,7 +4,12 @@ import { EVENT_DETAILS } from '@/utils/constants';
 import { HeroToran } from '@/components/hero/HeroToran';
 import './hero.css';
 
-export const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  isOpening?: boolean;
+  isOpened?: boolean;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ isOpening = false, isOpened = false }) => {
   const heroRootRef = useRef<HTMLDivElement | null>(null);
   const bgAtmosphereRef = useRef<HTMLDivElement | null>(null);
   const templeSilhouetteRef = useRef<HTMLDivElement | null>(null);
@@ -17,23 +22,59 @@ export const HeroSection: React.FC = () => {
   const subtitleRef = useRef<HTMLDivElement | null>(null);
   const supportingRef = useRef<HTMLDivElement | null>(null);
   const petalsRef = useRef<HTMLDivElement | null>(null);
+  const hasAnimatedRef = useRef(false);
 
   useLayoutEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    // If already opened upon initial render (e.g. test or refresh), mark as animated and stay visible
+    if (isOpened && !isOpening && !hasAnimatedRef.current) {
+      hasAnimatedRef.current = true;
+      return;
+    }
+
+    // Only start entrance timeline when curtains begin opening (or if opened)
+    if ((!isOpening && !isOpened) || hasAnimatedRef.current) return;
+    hasAnimatedRef.current = true;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: 'power2.out' },
         onComplete: () => {
-          // Release will-change after entrance animation completes.
-          // Elements either become static or are handled by CSS animations
-          // (which the browser auto-promotes to compositor layers as needed).
-          if (sanctumHaloRef.current) sanctumHaloRef.current.style.willChange = 'auto';
-          if (shlokaRingRef.current) shlokaRingRef.current.style.willChange = 'auto';
+          // Release will-change and clear inline transforms so CSS animations take over without conflict
+          if (sanctumHaloRef.current) {
+            sanctumHaloRef.current.style.willChange = 'auto';
+            gsap.set(sanctumHaloRef.current, { clearProps: 'transform' });
+          }
+          if (idolWrapperRef.current) {
+            gsap.set(idolWrapperRef.current, { clearProps: 'transform' });
+          }
+          if (shlokaRingRef.current) {
+            shlokaRingRef.current.style.willChange = 'auto';
+            gsap.set(shlokaRingRef.current, { clearProps: 'transform' });
+          }
+          if (titleContainerRef.current) {
+            gsap.set(titleContainerRef.current, { clearProps: 'transform' });
+          }
+          if (subtitleRef.current) {
+            gsap.set(subtitleRef.current, { clearProps: 'transform' });
+          }
+          if (supportingRef.current) {
+            gsap.set(supportingRef.current, { clearProps: 'transform' });
+          }
+          if (toranRef.current) {
+            gsap.set(toranRef.current, { clearProps: 'transform' });
+          }
+          if (invocationRef.current) {
+            gsap.set(invocationRef.current, { clearProps: 'transform' });
+          }
           if (petalsRef.current) {
             const petals = petalsRef.current.querySelectorAll<HTMLElement>('.hero-depth-petal');
-            petals.forEach((p) => { p.style.willChange = 'auto'; });
+            petals.forEach((p) => {
+              p.style.willChange = 'auto';
+              gsap.set(p, { clearProps: 'transform' });
+            });
           }
         },
       });
@@ -131,7 +172,7 @@ export const HeroSection: React.FC = () => {
     }, heroRootRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isOpening, isOpened]);
 
   // Natural scattered temple petals (Rose & Marigold) framing perimeter
   const petals = [

@@ -25,7 +25,20 @@ export const EventSection: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             ctx = gsap.context(() => {
-              const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+              const tl = gsap.timeline({
+                defaults: { ease: 'power2.out' },
+                onComplete: () => {
+                  if (introRef.current) gsap.set(introRef.current, { clearProps: 'transform' });
+                  if (dressCodePanelRef.current) gsap.set(dressCodePanelRef.current, { clearProps: 'transform' });
+                  if (dressCodeSwatchRef.current) gsap.set(dressCodeSwatchRef.current, { clearProps: 'transform' });
+                  if (dressCodeTitleRef.current) gsap.set(dressCodeTitleRef.current, { clearProps: 'transform' });
+                  if (dressCodeSupportingRef.current) gsap.set(dressCodeSupportingRef.current, { clearProps: 'transform' });
+                  if (panelsGridRef.current) {
+                    const panels = panelsGridRef.current.querySelectorAll('.invitation-panel');
+                    gsap.set(panels, { clearProps: 'transform' });
+                  }
+                },
+              });
 
               // 1. Ornamental divider / section intro
               tl.fromTo(
@@ -91,7 +104,7 @@ export const EventSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
     observer.observe(sectionRef.current);

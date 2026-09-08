@@ -8,10 +8,11 @@ import './intro.css';
 
 interface IntroSectionProps {
   isOpened: boolean;
+  onOpeningStart?: () => void;
   onOpen: () => void;
 }
 
-export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) => {
+export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpeningStart, onOpen }) => {
   const [isOpening, setIsOpening] = useState(false);
 
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -41,6 +42,7 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ isOpened, onOpen }) 
   const handleTapToOpen = () => {
     if (isOpening || isOpened) return;
     setIsOpening(true);
+    onOpeningStart?.();
 
     // Prepare / unlock devotional audio playback within user gesture context (safe isolation)
     try {

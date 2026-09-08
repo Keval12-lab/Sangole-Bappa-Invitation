@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IntroSection } from '@/sections/01-IntroSection';
 import { HeroSection } from '@/sections/02-HeroSection';
 import { EventSection } from '@/sections/03-EventSection';
@@ -10,6 +10,23 @@ import '@/styles/globals.css';
 
 export const App: React.FC = () => {
   const [isOpened, setIsOpened] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
+
+  // Prevent background page scrolling while the Entry Gate curtains are closed
+  useEffect(() => {
+    if (!isOpened) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpened]);
+
+  const handleOpeningStart = () => {
+    setIsOpening(true);
+  };
 
   const handleOpenInvitation = () => {
     setIsOpened(true);
@@ -21,12 +38,16 @@ export const App: React.FC = () => {
       <AudioController isOpened={isOpened} />
 
       {/* 01. Intro / Tap to Open Gate */}
-      <IntroSection isOpened={isOpened} onOpen={handleOpenInvitation} />
+      <IntroSection
+        isOpened={isOpened}
+        onOpeningStart={handleOpeningStart}
+        onOpen={handleOpenInvitation}
+      />
 
       {/* Main Mobile-First Invitation Experience */}
       <main className="app-container">
         {/* 02. Main Ganpati Hero */}
-        <HeroSection />
+        <HeroSection isOpening={isOpening} isOpened={isOpened} />
 
         <div className="section-ceremonial-bridge" aria-hidden="true" />
 

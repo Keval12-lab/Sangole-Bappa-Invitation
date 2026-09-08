@@ -25,7 +25,15 @@ export const LocationSection: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             ctx = gsap.context(() => {
-              const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+              const tl = gsap.timeline({
+                defaults: { ease: 'power2.out' },
+                onComplete: () => {
+                  if (introRef.current) gsap.set(introRef.current, { clearProps: 'transform' });
+                  if (mapFrameRef.current) gsap.set(mapFrameRef.current, { clearProps: 'transform' });
+                  if (addressCardRef.current) gsap.set(addressCardRef.current, { clearProps: 'transform' });
+                  if (ctaBtnRef.current) gsap.set(ctaBtnRef.current, { clearProps: 'transform' });
+                },
+              });
 
               // 1. Section Intro reveals
               tl.fromTo(
@@ -103,7 +111,7 @@ export const LocationSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
     observer.observe(sectionRef.current);

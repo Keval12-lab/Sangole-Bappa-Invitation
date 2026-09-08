@@ -25,7 +25,21 @@ export const AttractionSection: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             ctx = gsap.context(() => {
-              const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+              const tl = gsap.timeline({
+                defaults: { ease: 'power2.out' },
+                onComplete: () => {
+                  if (silhouetteRef.current) gsap.set(silhouetteRef.current, { clearProps: 'transform' });
+                  if (dholStageRef.current) gsap.set(dholStageRef.current, { clearProps: 'transform' });
+                  if (logoContainerRef.current) gsap.set(logoContainerRef.current, { clearProps: 'transform' });
+                  if (titleRef.current) gsap.set(titleRef.current, { clearProps: 'transform' });
+                  if (taglineRef.current) gsap.set(taglineRef.current, { clearProps: 'transform' });
+                  if (descRef.current) gsap.set(descRef.current, { clearProps: 'transform' });
+                  if (petalsRef.current) {
+                    const petals = petalsRef.current.querySelectorAll('.dhol-ambient-petal');
+                    gsap.set(petals, { clearProps: 'transform' });
+                  }
+                },
+              });
 
               // 1. Background atmosphere appears
               tl.fromTo(
@@ -103,7 +117,7 @@ export const AttractionSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
     observer.observe(sectionRef.current);

@@ -29,7 +29,19 @@ export const ClosingSection: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             ctx = gsap.context(() => {
-              const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+              const tl = gsap.timeline({
+                defaults: { ease: 'power2.out' },
+                onComplete: () => {
+                  if (sanctumGlowRef.current) gsap.set(sanctumGlowRef.current, { clearProps: 'transform' });
+                  if (bappaRef.current) gsap.set(bappaRef.current, { clearProps: 'transform' });
+                  if (titleRef.current) gsap.set(titleRef.current, { clearProps: 'transform' });
+                  if (subtitleRef.current) gsap.set(subtitleRef.current, { clearProps: 'transform' });
+                  if (diyasRef.current) gsap.set(diyasRef.current, { clearProps: 'transform' });
+                  if (petalsRef.current) gsap.set(petalsRef.current, { clearProps: 'transform' });
+                  if (creditRef.current) gsap.set(creditRef.current, { clearProps: 'transform,opacity' });
+                  if (sealRef.current) gsap.set(sealRef.current, { clearProps: 'transform' });
+                },
+              });
 
               // 0.00: Dark sanctum atmosphere fades in
               tl.fromTo(
@@ -116,7 +128,7 @@ export const ClosingSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
     observer.observe(sectionRef.current);
